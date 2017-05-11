@@ -55,18 +55,7 @@ const appRoutes: Routes = [
   ],
   providers: [],
   bootstrap: [
-    AppComponent,
-    HomeComponent,
-    AboutComponent,
-    VideoComponent,
-    EventComponent,
-    EventDetailComponent,
-    ContactComponent,
-    ReviewComponent,
-    TimelineComponent,
-    PostsComponent,
-    SigninComponent,
-    PageNotFoundComponent
+    AppComponent
   ]
 })
 export class AppModule { }
