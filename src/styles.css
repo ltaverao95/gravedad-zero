@@ -88,7 +88,7 @@ section{
 	text-align: justify;
 }
 
-.table_post_feeds tbody, .table_post_feeds thead tr { display: block; }
+.table_post_feeds tbody, .table_post_feeds thead { display: block; }
 
 .table_post_feeds  tbody {
     height: 350px;
