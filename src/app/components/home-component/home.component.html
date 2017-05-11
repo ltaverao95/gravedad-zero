@@ -1,0 +1,483 @@
+<section>
+	
+	<div class="row">
+		<div class="col-xs-12 col-sm-3 col-lg-2">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Panel de Navegación</h3>
+				</div>
+				<div class="panel-body" style="padding: 0px">
+					<ul>
+						<ul class="nav nav-pills nav-stacked navegation_options">
+							<li><a href="" routerLink="/review">Reseñas</a></li>
+							<li><a href="" routerLink="/timeline">Línea de Tiempo</a></li>
+							<li><a href="" routerLink="/posts">Publicaciones</a></li>
+							<li><a href="" routerLink="/signin">Iniciar Sesión</a></li>
+						</ul>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-9 col-lg-7">
+			<div class="panel panel-primary">
+				<div class="panel-body content_gz">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt quasi rerum, nam? Est quaerat optio fuga, voluptatum! Cupiditate veniam maiores, expedita, repellendus distinctio iusto dolorum saepe temporibus molestiae ab reprehenderit?
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-lg-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading news_feed_title">Noticias</div>
+				<div class="panel-body news_feeds">
+					<div class="media">
+						<div class="media-left media-middle">
+							<a href="#">
+								<img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
+							</a>
+						</div>
+						<div class="media-body">
+							<h4 class="media-heading">Middle aligned media</h4>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis magnam laboriosam modi quaerat, doloremque placeat perspiciatis distinctio eos sit! Dignissimos eum consectetur vero perferendis iusto blanditiis nulla repellat repellendus, aliquid.
+							</p>
+						</div>
+					</div>
+					<div class="media news_feeds_content">
+						<div class="media-left media-middle">
+							<a href="#">
+								<img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
+							</a>
+						</div>
+						<div class="media-body news_feeds_content">
+							<h4 class="media-heading">Middle aligned media</h4>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis magnam laboriosam modi quaerat, doloremque placeat perspiciatis distinctio eos sit! Dignissimos eum consectetur vero perferendis iusto blanditiis nulla repellat repellendus, aliquid.
+							</p>
+						</div>
+					</div>
+					<div class="media">
+						<div class="media-left media-middle">
+							<a href="#">
+								<img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
+							</a>
+						</div>
+						<div class="media-body">
+							<h4 class="media-heading">Middle aligned media</h4>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis magnam laboriosam modi quaerat, doloremque placeat perspiciatis distinctio eos sit! Dignissimos eum consectetur vero perferendis iusto blanditiis nulla repellat repellendus, aliquid.
+							</p>
+						</div>
+					</div>
+					<div class="media news_feeds_content">
+						<div class="media-left media-middle">
+							<a href="#">
+								<img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
+							</a>
+						</div>
+						<div class="media-body news_feeds_content">
+							<h4 class="media-heading">Middle aligned media</h4>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis magnam laboriosam modi quaerat, doloremque placeat perspiciatis distinctio eos sit! Dignissimos eum consectetur vero perferendis iusto blanditiis nulla repellat repellendus, aliquid.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer" style="text-align: center;">
+					<div class="btn-group btn-group-sm" role="group" aria-label="actions">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_post_modal">
+						<i class="glyphicon glyphicon-plus"></i>
+						</button>
+						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit_post_modal">
+						<i class="glyphicon glyphicon-pencil"></i>
+						</button>
+						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_post_modal">
+						<i class="glyphicon glyphicon-trash"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Modals -->
+
+<!-- New Post -->
+<div class="modal fade" id="new_post_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+	<div class="modal-dialog" role="document">
+		<div class="panel panel-primary">
+
+			<div class="panel-heading" style="overflow: hidden">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="panel-title">Nueva Publicación</h4>
+			</div>
+
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="post_title" class="col-sm-2 control-label">Título</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="post_title" placeholder="Título">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="post_message" class="col-sm-2 control-label">Mensaje</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="post_message" cols="30" rows="10" style="resize: none"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Publicar</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Edit Post -->
+<div class="modal fade" id="edit_post_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="panel panel-success">
+
+			<div class="panel-heading" style="overflow: hidden">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="panel-title">Editar Publicación</h4>
+			</div>
+
+			<div class="modal-body">
+				<table class="table table-responsive table_post_feeds">
+					<thead>
+					<th>
+						Editar
+					</th>
+					<th>
+						Id
+					</th>
+					<th>
+						Fecha de Creación	
+					</th>
+					<th>
+						Creado Por
+					</th>
+					<th>
+						Título
+					</th>
+					<th>
+						Publicación
+					</th>
+					</thead>	
+					<tbody>
+					<tr>
+						<td>
+							<button class="btn btn-success" data-toggle="modal" data-target="#edit_post_selected_modal">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</button>
+						</td>
+						<td>
+							1
+						</td>
+						<td>
+							07/01/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-success">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</button>
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							07/02/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-success">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</button>
+						</td>
+						<td>
+							3
+						</td>
+						<td>
+							07/03/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-success">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</button>
+						</td>
+						<td>
+							4
+						</td>
+						<td>
+							07/04/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-success">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</button>
+						</td>
+						<td>
+							5
+						</td>
+						<td>
+							07/05/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Edit Post Selected -->
+<div class="modal fade" id="edit_post_selected_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+	<div class="modal-dialog" role="document">
+		<div class="panel panel-success">
+
+			<div class="panel-heading" style="overflow: hidden">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="panel-title">Publicación Seleccionada</h4>
+			</div>
+
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="post_title" class="col-sm-2 control-label">Título</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="post_title" placeholder="Título" value="Middle aligned media">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="post_message" class="col-sm-2 control-label">Mensaje</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="post_message" cols="30" rows="10" style="resize: none">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+							</textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Delete Post -->
+<div class="modal fade" id="delete_post_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="panel panel-danger">
+
+			<div class="panel-heading" style="overflow: hidden">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="panel-title">Eliminar Publicación</h4>
+			</div>
+
+			<div class="modal-body">
+				<table class="table table-responsive table_post_feeds">
+					<thead>
+					<th>
+						<input type="checkbox">
+					</th>
+					<th>
+						Id
+					</th>
+					<th>
+						Fecha de Creación	
+					</th>
+					<th>
+						Creado Por
+					</th>
+					<th>
+						Título
+					</th>
+					<th>
+						Publicación
+					</th>
+					</thead>	
+					<tbody>
+					<tr>
+						<td>
+							<input type="checkbox">
+						</td>
+						<td>
+							1
+						</td>
+						<td>
+							07/01/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox">
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							07/02/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox">
+						</td>
+						<td>
+							3
+						</td>
+						<td>
+							07/03/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox">
+						</td>
+						<td>
+							4
+						</td>
+						<td>
+							07/04/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox">
+						</td>
+						<td>
+							5
+						</td>
+						<td>
+							07/05/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Eliminar</button>
+			</div>
+
+		</div>
+	</div>
+</div>

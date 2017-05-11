@@ -1,0 +1,83 @@
+<header class="row header_gz">
+	<div class="logo">
+		<figure>
+			<img src="assets/images/gzlogo.jpg" alt="GZLogo">
+		</figure>
+	</div>
+</header>
+
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="" routerLink="/home">
+				<img alt="Brand" src="assets/images/gz_favicon.png" width="25px" height="25px">
+			</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li routerLinkActive="active"><a href="" routerLink="/home">Inicio</a></li>
+				<li routerLinkActive="active"><a href="" routerLink="/about">Acerca de</a></li>
+				<li routerLinkActive="active"><a href="" routerLink="/videos">Videos</a></li>
+				<li routerLinkActive="active"><a href="" routerLink="/events">Eventos</a></li>
+				<li routerLinkActive="active"><a href="" routerLink="/contact">Contacto</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						Admin 
+						<span class="caret"></span>
+					</a>
+					<div class="dropdown-menu">
+						<div class="user_profile_options">
+							<img src="assets/images/gzlogo.jpg" class="img-circle" alt="GZLogo" width="60px" height="60px">
+							<hr>
+							<ul class="user_account_options">
+								<li>
+									<a href="">Admin</a>	
+								</li>
+								<li>
+									<a href="">Opciones</a>	
+								</li>
+								<li>
+									<a href="">Cerrar Sesión</a>	
+								</li>
+							</ul>
+							<hr>
+							<strong>
+								Actividad Rápida
+							</strong>
+							<ul class="user_quick_actions">
+								<li><a data-toggle="modal" data-target="#new_post_modal" style="cursor: pointer">Agregar Publicación</a></li>
+								<li><a href="" data-toggle="modal" data-target="#new_event_modal">Agregar Evento</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer class="footer_gz">
+	<strong>All rights reserved by Gravedad Zero &copy; 2016</strong>
+	<div class="social_networks">
+		<a href="https://www.facebook.com/GravedadZeroPaginaoficial" target="_blank">
+			<img src="assets/images/fb_logo.png" alt="Facebook">
+		</a>
+		<a href="https://www.instagram.com/gravedadzero_12" target="_blank">
+			<img src="assets/images/instagram_logo.png" alt="Instagram">
+		</a>
+		<a href="https://www.youtube.com/user/GravedadzeroParkour" target="_blank">
+			<img src="assets/images/youtube_logo.png" alt="YouTube">
+		</a>
+	</div>
+</footer>
