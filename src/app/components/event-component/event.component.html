@@ -5,7 +5,9 @@
             <h2>Eventos nacionales de Parkour</h2>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2" style="margin-top: 15px;">
-            <button class="btn btn-default">
+            <button class="btn btn-default"
+                    data-toggle="modal"
+                    data-target="#new_event_modal">
                 <i class="glyphicon glyphicon-plus"></i>
             </button>
             <button class="btn btn-default">
@@ -28,7 +30,7 @@
                     <p class="text-justify">
                         MEDEsplazo es un evento anual de tres días en los que se realizan talleres, charlas, clases, entrenamientos y exhibiciones de Parkour y Slackline en diferentes puntos estratégicos de la cuidad de Medellín y sus alrededores como reserva naturales, municipios aledaños y diversas unidades deportivas del Valle de Aburrá.
                     </p>
-                    <a href="" class="btn btn-success">Continuar Leyendo</a>
+                    <a href="" class="btn btn-success" routerLink="/events/detail/{{id}}">Continuar Leyendo</a>
                 </div>
             </div>
         </div>
@@ -88,45 +90,4 @@
     </div>
 </section>
 
-<!-- New Post -->
-<div class="modal fade" id="new_event_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
-
-    <div class="modal-dialog" role="document">
-        <div class="panel panel-primary">
-
-            <div class="panel-heading" style="overflow: hidden">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="panel-title">Nuevo Evento</h4>
-            </div>
-
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label for="new_event_title" class="col-sm-2 control-label">Título</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="new_event_title" placeholder="Título">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_event_title" class="col-sm-2 control-label">Imágen</label>
-                        <div class="col-sm-10">
-                            <input type="file" accept="image/*">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="new_event_description" class="col-sm-2 control-label">Descripción</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" id="new_event_description" cols="30" rows="10" style="resize: none"></textarea>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Publicar</button>
-            </div>
-
-        </div>
-    </div>
-</div>
+<router-outlet></router-outlet>

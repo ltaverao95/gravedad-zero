@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'event.detail',
-  templateUrl: './event.detail.component.html',
-  styleUrls: ['./event.detail.component.css']
+  selector: 'blog-article',
+  templateUrl: './blog.article.component.html',
+  styleUrls: ['./blog.article.component.css']
 })
-export class EventDetailComponent 
+export class BlogArticleComponent 
 {
   id: any;
   paramsSub: any;  
@@ -19,5 +19,5 @@ export class EventDetailComponent
   
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
-  }
+  }  
 }

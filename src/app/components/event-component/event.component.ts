@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent {
-  
+  id: any = 2;
 }
