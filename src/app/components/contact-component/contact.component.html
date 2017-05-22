@@ -1,26 +1,44 @@
-<section class="contact">
-    <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-4 contact_form_style">
-            <form>
-                <div class="form-group">
-                    <label for="contact_name">Nombre *</label>
-                    <input type="text" class="form-control" id="contact_name" placeholder="Nombre">
-                </div>
-                <div class="form-group">
-                    <label for="contact_email">Email *</label>
-                    <input type="email" class="form-control" id="contact_email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="contact_phone">Teléfono</label>
-                    <input type="number" class="form-control" id="contact_phone" placeholder="Teléfono">
-                    <p class="help-block">Este campo es opcional</p>
-                </div>
-                <div class="form-group">
-                    <label for="contact_message">Mensaje *</label>
-                    <textarea class="form-control" id="contact_message" cols="30" rows="10" style="resize: none"></textarea>
-                </div>
-                <button type="button" class="btn btn-default">Enviar</button>
-            </form>
+<div class="container">
+	<div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+          <form class="form-horizontal" action="" method="post">
+          <fieldset>
+            <legend class="text-center">Contactáctanos</legend>
+    
+            <!-- Name input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="name">Nombre</label>
+              <div class="col-md-9">
+                <input id="name" name="name" type="text" placeholder="Tu nombre" class="form-control">
+              </div>
+            </div>
+    
+            <!-- Email input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email">E-mail</label>
+              <div class="col-md-9">
+                <input id="email" name="email" type="text" placeholder="Tu email" class="form-control">
+              </div>
+            </div>
+    
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="message">Tu Mensaje</label>
+              <div class="col-md-9">
+                <textarea class="form-control" id="message" name="message" placeholder="Por favor ingresa tu mensaje aquí..." rows="5"></textarea>
+              </div>
+            </div>
+    
+            <!-- Form actions -->
+            <div class="form-group">
+              <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
         </div>
-    </div>
-</section>
+      </div>
+	</div>
+</div>
