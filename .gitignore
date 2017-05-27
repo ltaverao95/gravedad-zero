@@ -1,12 +1,12 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-/tmp
-/out-tsc
+/Client/dist
+/Client/tmp
+/Client/out-tsc
 
 # dependencies
-/node_modules
+/Client/node_modules
 
 # IDEs and editors
 /.idea
@@ -34,12 +34,12 @@ testem.log
 /typings
 
 # e2e
-/e2e/*.js
-/e2e/*.map
+/Client/e2e/*.js
+/Client/e2e/*.map
 
 # System Files
 .DS_Store
 Thumbs.db
 
 # Project Files To Ignore
-src/assets/lib/*
+Client/src/assets/lib/*
