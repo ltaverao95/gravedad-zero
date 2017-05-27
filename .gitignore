@@ -6,7 +6,7 @@
 /Client/out-tsc
 
 # dependencies
-/Client/node_modules
+/node_modules
 
 # IDEs and editors
 /.idea
@@ -43,3 +43,4 @@ Thumbs.db
 
 # Project Files To Ignore
 Client/src/assets/lib/*
+dist/*
