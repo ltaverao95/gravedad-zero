@@ -1,0 +1,620 @@
+<header class="row header_gz">
+	<div class="logo">
+		<figure>
+			<img src="assets/images/gzlogo.jpg" alt="GZLogo">
+		</figure>
+	</div>
+</header>
+
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="" routerLink="/home">
+				<img alt="Brand" src="assets/images/gz_favicon.png" width="25px" height="25px">
+			</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li routerLinkActive="active"><a href="" routerLink="/home">Inicio</a></li>
+				<li routerLinkActive="active"><a href="" routerLink="/about">Acerca de</a></li>
+				<li routerLinkActive="active"><a href="" routerLink="/blog">Blog</a></li>
+				<li routerLinkActive="active"><a href="" routerLink="/videos">Videos</a></li>
+				<li routerLinkActive="active"><a href="" routerLink="/events">Eventos</a></li>
+				<li routerLinkActive="active"><a href="" routerLink="/contact">Contacto</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						Opciones 
+						<span class="caret"></span>
+					</a>
+					<div class="dropdown-menu">
+						<div class="user_profile_options">
+							<img src="assets/images/gzlogo.jpg" class="img-circle" alt="GZLogo" width="60px" height="60px">
+							<hr>
+							<ul class="user_account_options">
+								<li>
+									<a href="" routerLink="/admin">Cuenta</a>	
+								</li>
+								<li>
+									<a href="" routerLink="/configuration">Configuración</a>	
+								</li>
+								<li>
+									<a href="" routerLink="/signout">Cerrar Sesión</a>	
+								</li>
+							</ul>
+							<hr>
+							<strong>
+								Actividad Rápida
+							</strong>
+							<ul class="user_quick_actions">
+								<li><a href="" data-toggle="modal" data-target="#new_post_modal">Agregar Publicación</a></li>
+								<li><a href="" data-toggle="modal" data-target="#upload_new_video_modal">Agregar Video</a></li>
+								<li><a href="" data-toggle="modal" data-target="#new_event_modal">Agregar Evento</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer class="footer_gz">
+	<strong>All rights reserved by Gravedad Zero &copy; 2016</strong>
+	<div class="social_networks">
+		<a href="https://www.facebook.com/GravedadZeroPaginaoficial" target="_blank">
+			<img src="assets/images/fb_logo.png" alt="Facebook">
+		</a>
+		<a href="https://www.instagram.com/gravedadzero_12" target="_blank">
+			<img src="assets/images/instagram_logo.png" alt="Instagram">
+		</a>
+		<a href="https://www.youtube.com/user/GravedadzeroParkour" target="_blank">
+			<img src="assets/images/youtube_logo.png" alt="YouTube">
+		</a>
+	</div>
+</footer>
+
+<!-- Modals -->
+
+<!-- New Post -->
+<div class="modal fade" id="new_post_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+	<div class="modal-dialog" role="document">
+		<div class="panel panel-primary">
+
+			<div class="panel-heading" style="overflow: hidden">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="panel-title">Nueva Publicación</h4>
+			</div>
+
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="post_title" class="col-sm-2 control-label">Título</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="post_title" placeholder="Título">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="post_message" class="col-sm-2 control-label">Mensaje</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="post_message" cols="30" rows="10" style="resize: none"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Publicar</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Edit Post -->
+<div class="modal fade" id="edit_post_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="panel panel-success">
+
+			<div class="panel-heading" style="overflow: hidden">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="panel-title">Editar Publicación</h4>
+			</div>
+
+			<div class="modal-body">
+				<table class="table table-responsive table_post_feeds">
+					<thead>
+					<th>
+						Editar
+					</th>
+					<th>
+						Id
+					</th>
+					<th>
+						Fecha de Creación	
+					</th>
+					<th>
+						Creado Por
+					</th>
+					<th>
+						Título
+					</th>
+					<th>
+						Publicación
+					</th>
+					</thead>	
+					<tbody>
+					<tr>
+						<td>
+							<button class="btn btn-success" data-toggle="modal" data-target="#edit_post_selected_modal">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</button>
+						</td>
+						<td>
+							1
+						</td>
+						<td>
+							07/01/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-success">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</button>
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							07/02/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-success">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</button>
+						</td>
+						<td>
+							3
+						</td>
+						<td>
+							07/03/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-success">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</button>
+						</td>
+						<td>
+							4
+						</td>
+						<td>
+							07/04/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-success">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</button>
+						</td>
+						<td>
+							5
+						</td>
+						<td>
+							07/05/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Edit Post Selected -->
+<div class="modal fade" id="edit_post_selected_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+	<div class="modal-dialog" role="document">
+		<div class="panel panel-success">
+
+			<div class="panel-heading" style="overflow: hidden">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="panel-title">Publicación Seleccionada</h4>
+			</div>
+
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="post_title" class="col-sm-2 control-label">Título</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="post_title" placeholder="Título" value="Middle aligned media">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="post_message" class="col-sm-2 control-label">Mensaje</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="post_message" cols="30" rows="10" style="resize: none">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+							</textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Delete Post -->
+<div class="modal fade" id="delete_post_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="panel panel-danger">
+
+			<div class="panel-heading" style="overflow: hidden">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="panel-title">Eliminar Publicación</h4>
+			</div>
+
+			<div class="modal-body">
+				<table class="table table-responsive table_post_feeds">
+					<thead>
+					<th>
+						<input type="checkbox">
+					</th>
+					<th>
+						Id
+					</th>
+					<th>
+						Fecha de Creación	
+					</th>
+					<th>
+						Creado Por
+					</th>
+					<th>
+						Título
+					</th>
+					<th>
+						Publicación
+					</th>
+					</thead>	
+					<tbody>
+					<tr>
+						<td>
+							<input type="checkbox">
+						</td>
+						<td>
+							1
+						</td>
+						<td>
+							07/01/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox">
+						</td>
+						<td>
+							2
+						</td>
+						<td>
+							07/02/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox">
+						</td>
+						<td>
+							3
+						</td>
+						<td>
+							07/03/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox">
+						</td>
+						<td>
+							4
+						</td>
+						<td>
+							07/04/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox">
+						</td>
+						<td>
+							5
+						</td>
+						<td>
+							07/05/2016
+						</td>
+						<td>
+							Admin
+						</td>
+						<td>
+							Middle aligned media
+						</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi autem dignissimos eius, tenetur amet ipsum dolor quos illo quae, suscipit aliquid optio! Saepe repudiandae, nemo minus nesciunt, vel quas similique.
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Eliminar</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Upload New Video -->
+<div class="modal fade" id="upload_new_video_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog" role="document">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading" style="overflow: hidden">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="panel-title">Cargar Nuevo Vídeo</h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="post_title" class="col-sm-2 control-label">Título</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="post_title" placeholder="URL" value="https://www.youtube.com/embed/QcOSu3dMIDE">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="post_title" class="col-sm-2 control-label">URL</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="post_title" placeholder="URL" value="https://www.youtube.com/embed/QcOSu3dMIDE">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="post_message" class="col-sm-2 control-label">Vista Previa</label>
+                        <div class="col-sm-10">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QcOSu3dMIDE"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="check_as_first" class="col-sm-5 control-label">¿Establecer como principal?</label>
+                        <div class="col-sm-2">
+                            <input type="checkbox" id="check_as_first">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Publicar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Edit Video -->
+<div class="modal fade" id="edit_video_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog" role="document">
+        <div class="panel panel-success">
+
+            <div class="panel-heading" style="overflow: hidden">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="panel-title">Editar Vídeo</h4>
+            </div>
+
+            <div class="modal-body">
+                
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Publicar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Delete Video -->
+<div class="modal fade" id="delete_video_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog" role="document">
+        <div class="panel panel-danger">
+
+            <div class="panel-heading" style="overflow: hidden">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="panel-title">Eliminar Vídeo</h4>
+            </div>
+
+            <div class="modal-body">
+                
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Publicar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- New Event -->
+<div class="modal fade" id="new_event_modal" tabindex="-1" role="dialog" aria-labelledby="labelPreview" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog" role="document">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading" style="overflow: hidden">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="panel-title">Nuevo Evento</h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="new_event_title" class="col-sm-2 control-label">Título</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="new_event_title" placeholder="Título">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="new_event_title" class="col-sm-2 control-label">Imágen</label>
+                        <div class="col-sm-10">
+                            <input type="file" accept="image/*">
+                        </div>
+                    </div>
+					<div class="form-group">
+                        <label for="new_event_category" class="col-sm-2 control-label">Categoría</label>
+                        <div class="col-sm-10">
+							<select name="category" 
+									id="new_event_category"
+									class="form-control">
+									<option selected="selected">[--Seleccionar--]</option>
+									<option>Nacional</option>
+									<option>Internacional</option>
+							</select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="new_event_description" class="col-sm-2 control-label">Descripción</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="new_event_description" cols="30" rows="10" style="resize: none"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Publicar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
