@@ -6,9 +6,9 @@
         public $Q = null;
         public $ArrayParameters = null;
 
-        private $_userName = "";
-        private $_password = "";
-        private $_dataBaseName = "";
+        private $_userName = "postgres";
+        private $_password = "f3L1P3T25!";
+        private $_dataBaseName = "gravedad-zero-db";
         private $_host = "localhost";
 
         //##### IDataBaseServices implementation

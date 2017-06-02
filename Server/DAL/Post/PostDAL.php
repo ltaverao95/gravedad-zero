@@ -1,6 +1,6 @@
 <?php 
 
-    class PostBLL implements ICRUDOperationServices
+    class PostDAL implements ICRUDOperationServices
     {
         //##### ICRUDOperationServices implementation
 
@@ -10,8 +10,7 @@
 	
             try 
             {
-                $postDAL = new PostDAL();
-                $responseDTO = $postDAL->GetAllItems();
+                $responseDTO = $this->GetItems();
             } 
             catch (Exception $e) 
             {
@@ -47,6 +46,11 @@
         }
 
         //##### Private methods
+
+        private function GetItems()
+        {
+            
+        }
     }
 
 ?>

@@ -31,16 +31,14 @@ body{
 	background: white;
 }
 
-.header_gz .logo figure{
+.header_gz figure{
 	background: grey;
-	border-radius: 5px;
 	height: 150px;
 	margin: 0 auto;
-	width: 30%;
+	width: 100%;
 }
 
-.header_gz .logo figure img{
-	border-radius: 5px;
+.header_gz figure img{
 	height: 150px;
 	width: 100%;
 }
@@ -132,14 +130,6 @@ section{
 
 .about, .videos, .events, .contact, .review, .timeline, .publication{
 	background: white;
-}
-
-.contact_form_style{
-	border-top-right-radius: 5px;
-	border-top-left-radius: 5px;
-	border: 3px solid steelblue;
-	box-shadow: 3px 3px 3px lightblue;
-	padding: 0.2em;
 }
 
 .events .thumbnail img{
