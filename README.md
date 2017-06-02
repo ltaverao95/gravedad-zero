@@ -3,6 +3,10 @@ Web page of parkour group called Gravedad Zero developed under framework Angular
 
 ## Pluggins, Frameworks, Database Engines Used
 - NPM
+- Bower
+- Karma
+- Jasmine
 - Angular Cli
 - Bootstrap
+- Typescript
 - PostgreSQL
