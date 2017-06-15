@@ -5,13 +5,13 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { ILoginBLL } from '../Interfaces/ILoginBLL';
+import { ILogin } from '../../common';
 import { ActionResultDTO } from '../../Blocks/Utils/Services/ActionResultDTO';
 import { UserDTO } from '../../DTO/User/UserDTO';
 import { UtilsConstants } from '../../Blocks/Utils/constants';
 
 @Injectable()
-export class LoginBLL implements ILoginBLL
+export class LoginService implements ILogin
 {
     constructor(private _http: Http) { }
 
@@ -51,7 +51,7 @@ export class LoginBLL implements ILoginBLL
         requestOptions.headers = new Headers({'Content-Type': 'application/json'});
 
         return this._http.options(UtilsConstants.LOGIN_URLS.SIGN_IN_URL, requestOptions)
-            .map((res: Response) => res.json())
+            .map((response: Response) => response)
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 }

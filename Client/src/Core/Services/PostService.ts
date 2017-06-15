@@ -1,7 +1,11 @@
-import { ICrudOperationsBLL } from '../Interfaces/ICrudOperationsBLL';
+import { 
+    
+    ICrudOperations
+
+ } from '../../common';
 import { ActionResultDTO } from '../../Blocks/Utils/Services/ActionResultDTO';
 
-export class PostBLL implements ICrudOperationsBLL
+export class PostBLL implements ICrudOperations<any>
 {
     public GetAllItems(): ActionResultDTO
     {

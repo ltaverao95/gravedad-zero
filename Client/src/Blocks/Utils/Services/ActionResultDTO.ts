@@ -1,33 +1,29 @@
-import { UtilsConstants } from '../constants';
+import { UtilsConstants } from '../';
 
-export class ActionResultDTO 
+export class ActionResultDTO
 {
-    public UIMessage: string = null;
-    public StackTrace: string = null;
-    public HasErrors: boolean = false;
-    public Result: number = UtilsConstants.EnumResult.Success;
-    public ResultData: any = null;
+    public UIMessage: string;
+    public StackTrace: string;
+    public HasErrors: boolean;
+    public Result: UtilsConstants.EnumResult = UtilsConstants.EnumResult.Success;
+    public ResultData: any;
 
-    public IsOk() : boolean
-    {
+    public IsOk(): boolean {
         return this.Result === UtilsConstants.EnumResult.Success;
     }
 
-    public HasError() : boolean
-    {
+    public HasError(): boolean {
         return !this.IsOk();
     }
 
-    public SetError(error) 
-    {
+    public SetError(errorMessage: string) {
         this.Result = UtilsConstants.EnumResult.Error;
-        this.UIMessage = error.Message;
+        this.UIMessage = errorMessage;
         return this;
     }
 
-    public SetErrorAndStackTrace(errorMessage, 
-                                 stackTrace) 
-    {
+    public SetErrorAndStackTrace(errorMessage: string,
+                                 stackTrace: string) {
         this.StackTrace = stackTrace;
         return this.SetError(errorMessage);
     }
