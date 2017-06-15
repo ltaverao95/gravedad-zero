@@ -1,5 +1,5 @@
 # Gravedad Zero Project
-Web page of parkour group called Gravedad Zero developed under framework AngularJs version 2 using API REST with C#
+Web page of parkour group (Gravedad Zero) developed under framework Angular version 4 and PHP
 
 ## Pluggins, Frameworks, Database Engines Used
 - NPM
