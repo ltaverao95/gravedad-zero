@@ -26,7 +26,7 @@ export class SigninComponent
       });
    }  
 
-   public singin()
+   public signin()
    {
       this._userDTO.UserName = this.loginFormGroup.controls.user_name.value;
       this._userDTO.Password = this.loginFormGroup.controls.password.value;

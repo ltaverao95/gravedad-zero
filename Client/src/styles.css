@@ -156,6 +156,10 @@ section{
 	text-align: left;
 }
 
+.gravedad-zero-error{
+	color: red;
+}
+
 @media screen and (max-width: 618px) {
 	.header_gz .logo figure{
 		width: 100%;
