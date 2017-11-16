@@ -33,7 +33,9 @@ export class SigninComponent
 
       this._loginService.SignIn(this._userDTO).subscribe(
         response => {
-            console.log(response);
+            let actionResultDTO = response.json();
+            let userDTO: UserDTO = actionResultDTO.ResponseData;
+            console.log(userDTO);
         },
         err => {
             console.log(err);

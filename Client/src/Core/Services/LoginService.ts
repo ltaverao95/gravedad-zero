@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { Http, Response, Request, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { ILogin } from '../../common';
-import { ActionResultDTO } from '../../Blocks/Utils/Services/ActionResultDTO';
 import { UserDTO } from '../../DTO/User/UserDTO';
 import { UtilsConstants } from '../../Blocks/Utils/constants';
 
@@ -17,7 +16,7 @@ export class LoginService implements ILogin
 
     SignIn(userDTO: UserDTO): Observable<Response>
     {
-        let requestOptions: RequestOptions = new RequestOptions({
+        let requestOptions: Request = new Request({
             url: UtilsConstants.LOGIN_URLS.SIGN_IN_URL,
             method: RequestMethod.Post,
             body: JSON.stringify(userDTO)
@@ -28,7 +27,7 @@ export class LoginService implements ILogin
 
     LogOut(): Observable<Response>
     {
-        let requestOptions = new RequestOptions({
+        let requestOptions = new Request({
             method: RequestMethod.Get,
             url: ""
         });
@@ -38,7 +37,7 @@ export class LoginService implements ILogin
 
     SignUp(userDTO: UserDTO): Observable<Response>
     {
-        let requestOptions = new RequestOptions({
+        let requestOptions = new Request({
             url: "",
             method: RequestMethod.Post,
             body: JSON.stringify(userDTO)
@@ -49,12 +48,10 @@ export class LoginService implements ILogin
 
     //##### Private Methods
 
-    private DoRequest(requestOptions: RequestOptions): Observable<Response>
+    private DoRequest(requestOptions: Request): Observable<Response>
     {
-        requestOptions.headers = new Headers({'Content-Type': 'application/json'});
-
-        return this._http.options(requestOptions.url, requestOptions)
-            .map((response: Response) => response.json())
+        return this._http.request(requestOptions)
+            .map((response: Response) => response)
             .catch((error: Response) => Observable.throw(error.json().error || 'Server error'));
     }
 }
