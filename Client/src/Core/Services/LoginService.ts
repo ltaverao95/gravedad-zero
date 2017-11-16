@@ -17,7 +17,8 @@ export class LoginService implements ILogin
 
     SignIn(userDTO: UserDTO): Observable<Response>
     {
-        let requestOptions = new RequestOptions({
+        let requestOptions: RequestOptions = new RequestOptions({
+            url: UtilsConstants.LOGIN_URLS.SIGN_IN_URL,
             method: RequestMethod.Post,
             body: JSON.stringify(userDTO)
         });
@@ -29,6 +30,7 @@ export class LoginService implements ILogin
     {
         let requestOptions = new RequestOptions({
             method: RequestMethod.Get,
+            url: ""
         });
 
         return this.DoRequest(requestOptions);
@@ -37,6 +39,7 @@ export class LoginService implements ILogin
     SignUp(userDTO: UserDTO): Observable<Response>
     {
         let requestOptions = new RequestOptions({
+            url: "",
             method: RequestMethod.Post,
             body: JSON.stringify(userDTO)
         });
@@ -50,8 +53,8 @@ export class LoginService implements ILogin
     {
         requestOptions.headers = new Headers({'Content-Type': 'application/json'});
 
-        return this._http.options(UtilsConstants.LOGIN_URLS.SIGN_IN_URL, requestOptions)
-            .map((response: Response) => response)
-            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+        return this._http.options(requestOptions.url, requestOptions)
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json().error || 'Server error'));
     }
 }
