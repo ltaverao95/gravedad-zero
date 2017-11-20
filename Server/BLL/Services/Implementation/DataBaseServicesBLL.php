@@ -1,6 +1,6 @@
 <?php 
 
-    class DataBaseServices implements IDataBaseServices
+    class DataBaseServicesBLL implements IDataBaseServicesBLL
     {
         public $connection = null;
         public $Q = null;

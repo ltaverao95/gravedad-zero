@@ -7,13 +7,13 @@
 
             try
             {
-                $loginDAL = new LoginDAL();
                 $responseDTO = $this->ValidateCurrentUser($userDTO);
                 if($responseDTO->HasError)
                 {
                     return $responseDTO;
                 }
 
+                $loginDAL = new LoginDAL();
                 $responseDTO = $loginDAL->SignIn($userDTO);
             }
             catch (Exception $e)

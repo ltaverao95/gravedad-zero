@@ -256,7 +256,7 @@
             {
                 $dataBaseServicesBLL = new DataBaseServicesBLL();
 
-                $query = "SELECT * FROM login WHERE user_name = :user_name AND password = :password";
+                $query = "SELECT * FROM public.\"user\" WHERE user_name = :user_name AND password = :password";
                 $dataBaseServicesBLL->ArrayParameters = array(
                     ':user_name' => $userDTO->UserName, 
                     ':password' =>$userDTO->Password);
