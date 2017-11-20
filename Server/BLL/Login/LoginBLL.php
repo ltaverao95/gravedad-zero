@@ -149,6 +149,11 @@
             return $responseDTO;
         }
 
+        public function AddNewItem($userDTO)
+        {
+            
+        }
+
         public function UpdateItemByID($userDTO)
         {
             $responseDTO = new ResponseDTO();

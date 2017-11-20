@@ -7,7 +7,7 @@
 		public $StackTrace = "";
 		public $IsOk = true;
 		public $HasError = false;
-		public $ResponseData = null;
+		public $ResultData = null;
 
 		public function SetAsOk()
 		{

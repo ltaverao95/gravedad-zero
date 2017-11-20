@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 
+import { ActionResultDTO } from '../../../Blocks/Utils/Services/ActionResultDTO';
 import { UserDTO } from '../../../DTO/User/UserDTO';
 import { LoginService } from '../../../Core/Services/LoginService';
 
@@ -33,9 +34,8 @@ export class SigninComponent
 
       this._loginService.SignIn(this._userDTO).subscribe(
         response => {
-            let actionResultDTO = response.json();
-            let userDTO: UserDTO = actionResultDTO.ResponseData;
-            console.log(userDTO);
+            let actionResultDTO: ActionResultDTO = response.json();
+            console.log(actionResultDTO);
         },
         err => {
             console.log(err);

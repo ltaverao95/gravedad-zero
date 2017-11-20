@@ -99,6 +99,11 @@
             return $responseDTO;
         }
 
+        public function AddNewItem($userDTO)
+        {
+            
+        }
+
         public function UpdateItemByID($userDTO)
         {
             $responseDTO = new ResponseDTO();
@@ -277,7 +282,7 @@
                 
                 session_start();
                 $_SESSION['user_auth'] = $rowUser;
-                $responseDTO->ResponseData = $rowUser[0];
+                $responseDTO->ResultData = $rowUser[0];
                 $dataBaseServicesBLL->connection = null;
             }
             catch (Exception $e)
@@ -335,7 +340,7 @@
                 "SET id_login_user = :id_login_user, ".
                 "    user_name = :user_name, ".
                 "    password = :password, ".
-                "    user_role = :user_role ".
+                "    role = :role ".
                 "WHERE id_login_user = :id_login_user; ".
                 "UPDATE user_logued_info ".
                 "SET id_login_user = :id_login_user, ".
@@ -350,7 +355,7 @@
                     ':id_login_user' => $userDTO->IDLoginUser,
                     ':user_name' => $userDTO->UserName,
                     ':password' => $userDTO->Password,
-                    ':user_role' => $userDTO->UserRole,
+                    ':role' => $userDTO->Role,
                     ':identity_card' => $userDTO->UserAdminModel->IdentityCard,
                     ':name' => $userDTO->UserAdminModel->Name,
                     ':surname' => $userDTO->UserAdminModel->Surname,
@@ -475,7 +480,7 @@
                 "SET id_login_user = :id_login_user, ".
                 "user_name = :user_name, ".
                 "password = :password, ".
-                "user_role = :user_role; ".
+                "role = :role; ".
                 "INSERT INTO user_logued_info ".
                 "SET id_login_user = LAST_INSERT_ID(), ".
                 "identity_card = :identity_card, ".
@@ -487,7 +492,7 @@
                     ':id_login_user' => NULL, 
                     ':user_name' => $userDTO->UserName,
                     ':password' => $userDTO->Password,
-                    ':user_role' => $userDTO->UserRole,
+                    ':role' => $userDTO->Role,
                     ':identity_card' => $userDTO->UserAdminModel->IdentityCard,
                     ':name' => $userDTO->UserAdminModel->Name,
                     ':surname' => $userDTO->UserAdminModel->Surname,
@@ -520,7 +525,7 @@
                 {
                     return $responseDTO;
                 }
-                if($responseDTO->ResponseData[0]->UserRole == "admin")
+                if($responseDTO->ResultData[0]->Role == "admin")
                 {
                     $responseDTO->SetError("No puedes eliminar tu propia cuenta de administrador");
                     return $responseDTO;
@@ -542,7 +547,7 @@
             {
                 $dataBaseServicesBLL = new DataBaseServicesBLL();
 
-                $query = "SELECT * FROM public.\"user\""" WHERE user_name = :user_name";
+                $query = "SELECT * FROM public.\"user\" WHERE user_name = :user_name";
                 $dataBaseServicesBLL->ArrayParameters = array(
                     ':user_name' => $userDTO->UserName);
 
@@ -583,7 +588,7 @@
                 {
                     return $responseDTO;
                 }
-                if($responseDTO->ResponseData[0]->Password === $userDTO->Password)
+                if($responseDTO->ResultData[0]->Password === $userDTO->Password)
                 {
                     $responseDTO->SetError("La contraseña no puede ser igual a la anterior");
                     return $responseDTO;
