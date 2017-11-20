@@ -18,12 +18,12 @@ import { TimelineComponent } from './components/timeline-component/timeline.comp
 import { PostsComponent } from './components/posts-component/posts.component';
 import { SigninComponent } from './components/signin-component/signin.component';
 import { SignOutComponent } from './components/signout-component/signout.component';
-import { PageNotFoundComponent } from './components/page-not-found-component/page-not-found-component';
 import { AdminRootComponent } from './components/admin-root-component/admin.root.component';
 import { AdminHomeComponent } from './components/admin-home-component/admin.home.component';
 import { AdminUserComponent } from './components/admin-user-component/admin.user.component';
 import { AdminMessageComponent } from './components/admin-message-component/admin.message.component';
 import { ConfigurationComponent } from './components/configuration-component/configuration.component';
+import { PageNotFoundComponent } from './components/page-not-found-component/page-not-found-component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: "/home", pathMatch: 'full' },
