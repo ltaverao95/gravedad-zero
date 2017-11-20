@@ -12,9 +12,8 @@
 		$requestJson = file_get_contents("php://input");
         $requestDTO = json_decode($requestJson);
 
-        $responseDTO->ResponseData = $requestDTO;
-        
-        //$dbh = new PDO('pgsql:user=postgres dbname=database_test password=felipe0025; host=localhost');
+        $loginBLL = new LoginBLL();
+		$responseDTO = $loginBLL->SignIn($requestDTO);
 	} 
 	catch (Exception $e) 
 	{

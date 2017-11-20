@@ -7,45 +7,16 @@
         public $ArrayParameters = null;
 
         private $_userName = "postgres";
-        private $_password = "f3L1P3T25!";
-        private $_dataBaseName = "gravedad-zero-db";
+        private $_password = "felipe0025";
+        private $_dataBaseName = "gz_db";
         private $_host = "localhost";
 
         //##### IDataBaseServices implementation
 
-        public function ExecuteQuery($query)
+        public function InitializeDataBaseConnection()
         {
             $responseDTO = new ResponseDTO();
-            try 
-			{
-                $responseDTO = $this->InitializeDataBaseConnection();
-                if($responseDTO->HasError)
-                {
-                    return $responseDTO;
-                }
-                $this->Q = $this->connection->prepare($query);
-                if($this->ArrayParameters == null)
-                {   
-                    $this->Q->execute();                 
-                }
-                else
-                {
-                    $this->Q->execute($this->ArrayParameters);
-                    $this->ArrayParameters = null;
-                }
-			} 
-			catch (Exception $e)
-			{
-				$responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se ejecutaba el query en la base de datos", $e->getMessage());
-			}
-			return $responseDTO;
-        }
 
-        //##### Private methods
-
-        private function InitializeDataBaseConnection()
-        {
-            $responseDTO = new ResponseDTO();
             try 
 			{
                 $_connectionString = "pgsql:host=". $this->_host . ";dbname=".  $this->_dataBaseName;
@@ -62,6 +33,35 @@
 			catch (Exception $e)
 			{
 				$responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se conectaba con la base de datos", $e->getMessage());
+			}
+			return $responseDTO;
+        }
+
+        public function ExecuteQuery($query)
+        {
+            $responseDTO = new ResponseDTO();
+            try 
+			{
+                $responseDTO = $this->InitializeDataBaseConnection();
+                if($responseDTO->HasError)
+                {
+                    return $responseDTO;
+                }
+                
+                $this->Q = $this->connection->prepare($query);
+                if($this->ArrayParameters == null)
+                {   
+                    $this->Q->execute();                 
+                }
+                else
+                {
+                    $this->Q->execute($this->ArrayParameters);
+                    $this->ArrayParameters = null;
+                }
+			} 
+			catch (Exception $e)
+			{
+				$responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se ejecutaba el query en la base de datos", $e->getMessage());
 			}
 			return $responseDTO;
         }
