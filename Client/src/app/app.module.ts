@@ -25,6 +25,8 @@ import { AdminMessageComponent } from './components/admin-message-component/admi
 import { ConfigurationComponent } from './components/configuration-component/configuration.component';
 import { PageNotFoundComponent } from './components/page-not-found-component/page-not-found-component';
 
+import { LoginRedirect } from '../Core/Services/LoginRedirect';
+
 const appRoutes: Routes = [
   { path: '', redirectTo: "/home", pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -64,6 +66,7 @@ const appRoutes: Routes = [
   { path: 'signout', component: SignOutComponent },
   { path: 'admin', 
     component: AdminRootComponent,
+    canActivate: [LoginRedirect],
     children: [
       { 
         path: '', 
@@ -113,7 +116,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [LoginRedirect],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
