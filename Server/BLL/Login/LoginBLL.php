@@ -248,6 +248,12 @@
 
             try
             {
+                if ($userDTO == null)
+                {
+                    $responseDTO->SetError("No hay un usuario para validar");
+                    return $responseDTO;
+                }
+
                 if($userDTO->UserName == null)
                 {
                     $responseDTO->SetError("El campo de usuario no puede estar vacío");

@@ -8,18 +8,19 @@ import 'rxjs/add/operator/catch';
 import { ILogin } from '../../common';
 import { UserDTO } from '../../DTO/User/UserDTO';
 import { UtilsConstants } from '../../Blocks/Utils/constants';
+import { AESEncryption } from '../../Blocks/Crypt/Services/AESEncryption';
 
 @Injectable()
 export class LoginService implements ILogin
 {
-    constructor(private _http: Http) { }
+    constructor(private _http: Http, private _aesEncryption: AESEncryption) { }
 
     SignIn(userDTO: UserDTO): Observable<Response>
     {
         let requestOptions: Request = new Request({
             url: UtilsConstants.LOGIN_URLS.SIGN_IN_URL,
             method: RequestMethod.Post,
-            body: JSON.stringify(userDTO)
+            body: this._aesEncryption.EncryptText(JSON.stringify(userDTO)).ResultData
         });
 
         return this.DoRequest(requestOptions);

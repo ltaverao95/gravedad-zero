@@ -4,13 +4,15 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { ActionResultDTO } from '../../../Blocks/Utils/Services/ActionResultDTO';
 import { UserDTO } from '../../../DTO/User/UserDTO';
 import { LoginService } from '../../../Core/Services/LoginService';
+import { AESEncryption } from '../../../Blocks/Crypt/Services/AESEncryption';
 
 @Component({
   selector: 'signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
     providers: [
-        LoginService
+        LoginService,
+        AESEncryption
     ]
 })
 export class SigninComponent 
@@ -18,7 +20,7 @@ export class SigninComponent
    public loginFormGroup: FormGroup;
    private _userDTO: UserDTO;
 
-   constructor(private _loginService: LoginService)
+   constructor(private _loginService: LoginService, private _aesEncryption: AESEncryption)
    {
       this._userDTO = new UserDTO();
       this.loginFormGroup = new FormGroup({
@@ -35,7 +37,8 @@ export class SigninComponent
       this._loginService.SignIn(this._userDTO).subscribe(
         response => {
             let actionResultDTO: ActionResultDTO = response.json();
-            console.log(actionResultDTO);
+
+            console.log(this._aesEncryption.DecryptText(actionResultDTO.ResultData));
         },
         err => {
             console.log(err);

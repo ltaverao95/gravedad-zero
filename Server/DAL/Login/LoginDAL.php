@@ -260,6 +260,7 @@
             try
             {
                 $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $encryptionService = new CryptoJSAES();
 
                 $query = "SELECT * FROM public.\"user\" WHERE user_name = :user_name AND password = :password";
                 $dataBaseServicesBLL->ArrayParameters = array(
@@ -272,17 +273,15 @@
                     return $responseDTO;
                 }
 
-        		$rowUser = $dataBaseServicesBLL->Q->fetch();
+        		$rowUser = $dataBaseServicesBLL->Q->fetch(PDO::FETCH_ASSOC);
 		
                 if($rowUser == NULL)
                 {
                     $responseDTO->SetError("Usuario y/o contraseña inválidos, intente de nuevo.");
                     return $responseDTO;
                 }
-                
-                session_start();
-                $_SESSION['user_auth'] = $rowUser;
-                $responseDTO->ResultData = $rowUser[0];
+
+                $responseDTO->ResultData = $encryptionService->encrypt(json_encode($rowUser));
                 $dataBaseServicesBLL->connection = null;
             }
             catch (Exception $e)
