@@ -29,7 +29,7 @@
 				<li routerLinkActive="active"><a href="" routerLink="/events">Eventos</a></li>
 				<li routerLinkActive="active"><a href="" routerLink="/contact">Contacto</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right" *ngIf="loginService.isLoginValid()">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						Opciones 
@@ -38,6 +38,11 @@
 					<div class="dropdown-menu">
 						<div class="user_profile_options">
 							<img src="assets/images/gzlogo.jpg" class="img-circle" alt="GZLogo" width="60px" height="60px">
+							<div *ngIf="currentUser != null">
+								<br >
+								<span>{{currentUser.UserName}}</span>
+							</div>
+						
 							<hr>
 							<ul class="user_account_options">
 								<li>
@@ -50,14 +55,15 @@
 									<a href="" routerLink="/signout">Cerrar Sesión</a>	
 								</li>
 							</ul>
-							<hr>
-							<strong>
+							
+							<hr *ngIf="currentUser != null && currentUser.Role != enumUserPermissions.READ">
+							<strong *ngIf="currentUser != null && currentUser.Role != enumUserPermissions.READ">
 								Actividad Rápida
 							</strong>
-							<ul class="user_quick_actions">
-								<li><a href="" data-toggle="modal" data-target="#new_post_modal">Agregar Publicación</a></li>
-								<li><a href="" data-toggle="modal" data-target="#upload_new_video_modal">Agregar Video</a></li>
-								<li><a href="" data-toggle="modal" data-target="#new_event_modal">Agregar Evento</a></li>
+							<ul class="user_quick_actions" *ngIf="currentUser != null && currentUser.Role != enumUserPermissions.READ">
+								<li><a href="" data-toggle="modal" data-target="#new_post_modal">Publicación</a></li>
+								<li><a href="" data-toggle="modal" data-target="#upload_new_video_modal">Video</a></li>
+								<li><a href="" data-toggle="modal" data-target="#new_event_modal">Evento</a></li>
 							</ul>
 						</div>
 					</div>

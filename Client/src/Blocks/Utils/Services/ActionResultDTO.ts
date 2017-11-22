@@ -2,22 +2,19 @@ import { UtilsConstants } from '../';
 
 export class ActionResultDTO
 {
-    public UIMessage: string;
-    public StackTrace: string;
-    public HasErrors: boolean;
+    public UIMessage: string = null;
+    public StackTrace: string = null;
+    public HasErrors: boolean = false;
     public Result: UtilsConstants.EnumResult = UtilsConstants.EnumResult.Success;
-    public ResultData: any;
+    public ResultData: any = null;
 
     public IsOk(): boolean {
         return this.Result === UtilsConstants.EnumResult.Success;
     }
 
-    public HasError(): boolean {
-        return !this.IsOk();
-    }
-
     public SetError(errorMessage: string) {
         this.Result = UtilsConstants.EnumResult.Error;
+        this.HasErrors = true;
         this.UIMessage = errorMessage;
         return this;
     }

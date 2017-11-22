@@ -9,11 +9,40 @@ import { ILogin } from '../../common';
 import { UserDTO } from '../../DTO/User/UserDTO';
 import { UtilsConstants } from '../../Blocks/Utils/constants';
 import { AESEncryption } from '../../Blocks/Crypt/Services/AESEncryption';
+import { ActionResultDTO } from '../../Blocks/Utils/Services/ActionResultDTO';
 
 @Injectable()
 export class LoginService implements ILogin
 {
-    constructor(private _http: Http, private _aesEncryption: AESEncryption) { }
+    constructor(private _http: Http, 
+                private _aesEncryption: AESEncryption) { 
+
+    }
+
+    isLoginValid(){
+        if(localStorage.getItem('user_session')){
+            return true;
+        }
+
+        return false;
+    }
+
+    getLoggedUser(): UserDTO{
+        if(!this.isLoginValid())
+        {
+            return null
+        }
+
+        let actionResultDTO: ActionResultDTO = this._aesEncryption.DecryptText(localStorage.getItem('user_session'));
+        if(actionResultDTO.HasErrors){
+            return null;
+        }
+
+        let userDTO: UserDTO = JSON.parse(actionResultDTO.ResultData);
+        userDTO.Password = this._aesEncryption.EncryptText(userDTO.Password).ResultData;
+
+        return userDTO;
+    }
 
     SignIn(userDTO: UserDTO): Observable<Response>
     {

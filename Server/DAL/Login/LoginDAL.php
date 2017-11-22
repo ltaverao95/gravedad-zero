@@ -281,7 +281,13 @@
                     return $responseDTO;
                 }
 
-                $responseDTO->ResultData = $encryptionService->encrypt(json_encode($rowUser));
+                $userDTO = new UserDTO();
+                $userDTO->Id = $rowUser["id_user"];
+                $userDTO->UserName = $rowUser["user_name"];
+                $userDTO->Password = $rowUser["password"];
+                $userDTO->Role = $rowUser["role"];
+
+                $responseDTO->ResultData = $encryptionService->encrypt(json_encode($userDTO));
                 $dataBaseServicesBLL->connection = null;
             }
             catch (Exception $e)

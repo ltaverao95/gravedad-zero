@@ -8,6 +8,10 @@ export class ResourceMessages
         {
             key: 'ERROR_NEWS_DTO_DESCRIPTION_EMPTY',
             value: 'La descripción de la publicación no puede estar vacía'
+        },
+        {
+            key: 'ERROR_SIGNIN_ALREADY_AUTENTICATED',
+            value: 'Actualmente ya hay un usuario autenticado, por favor cierre sesión e inténtelo de nuevo.'
         }
     ];
 

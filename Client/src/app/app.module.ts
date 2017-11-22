@@ -25,7 +25,7 @@ import { AdminMessageComponent } from './components/admin-message-component/admi
 import { ConfigurationComponent } from './components/configuration-component/configuration.component';
 import { PageNotFoundComponent } from './components/page-not-found-component/page-not-found-component';
 
-import { LoginRedirect } from '../Core/Services/LoginRedirect';
+import { EnsureAuthenticated } from '../Core/Services/EnsureAuthenticated';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: "/home", pathMatch: 'full' },
@@ -63,26 +63,36 @@ const appRoutes: Routes = [
   { path: 'timeline', component: TimelineComponent },
   { path: 'posts', component: PostsComponent },
   { path: 'signin', component: SigninComponent },
-  { path: 'signout', component: SignOutComponent },
+  { 
+    path: 'signout', 
+    component: SignOutComponent,
+    canActivate: [EnsureAuthenticated],
+  },
   { path: 'admin', 
     component: AdminRootComponent,
-    canActivate: [LoginRedirect],
     children: [
       { 
         path: '', 
-        component: AdminHomeComponent
+        component: AdminHomeComponent,
+        canActivate: [EnsureAuthenticated],
       },
       { 
         path: 'profile',
-        component: AdminUserComponent
+        component: AdminUserComponent,
+        canActivate: [EnsureAuthenticated],
       },
       {
         path: 'messages',
-        component: AdminMessageComponent
+        component: AdminMessageComponent,
+        canActivate: [EnsureAuthenticated],
       }
     ]
   },
-  { path: 'configuration', component: ConfigurationComponent },
+  { 
+    path: 'configuration', 
+    component: ConfigurationComponent,
+    canActivate: [EnsureAuthenticated],
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -116,7 +126,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [LoginRedirect],
+  providers: [EnsureAuthenticated],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
