@@ -43,7 +43,7 @@
             try 
 			{
                 $responseDTO = $this->InitializeDataBaseConnection();
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }

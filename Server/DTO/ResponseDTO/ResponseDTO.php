@@ -6,14 +6,14 @@
 		public $UIMessage = "";
 		public $StackTrace = "";
 		public $IsOk = true;
-		public $HasError = false;
+		public $HasErrors = false;
 		public $ResultData = null;
 
 		public function SetAsOk()
 		{
 			$this->Result = 1;
 			$this->IsOk = true;
-			$this->HasError = false;
+			$this->HasErrors = false;
 		}
 
 		public function SetError($errorMessage)
@@ -21,7 +21,7 @@
 			$this->Result = 0;
 			$this->UIMessage = $errorMessage;
 			$this->IsOk = false;
-			$this->HasError = true;
+			$this->HasErrors = true;
 			return $this;		
 		}
 

@@ -12,29 +12,33 @@ import { AESEncryption } from '../../Blocks/Crypt/Services/AESEncryption';
 import { ActionResultDTO } from '../../Blocks/Utils/Services/ActionResultDTO';
 
 @Injectable()
-export class LoginService implements ILogin
-{
-    constructor(private _http: Http, 
-                private _aesEncryption: AESEncryption) { 
+export class LoginService implements ILogin {
+    constructor(private _http: Http,
+        private _aesEncryption: AESEncryption) {
 
     }
 
-    isLoginValid(){
-        if(localStorage.getItem('user_session')){
+    isLoginValid() {
+        if (localStorage.getItem('user_session') &&
+            localStorage.getItem('user_session') != "null") {
             return true;
         }
 
         return false;
     }
 
-    getLoggedUser(): UserDTO{
-        if(!this.isLoginValid())
-        {
+    getLoggedUser(): UserDTO {
+        if (!this.isLoginValid()) {
             return null
         }
 
         let actionResultDTO: ActionResultDTO = this._aesEncryption.DecryptText(localStorage.getItem('user_session'));
-        if(actionResultDTO.HasErrors){
+        if (actionResultDTO.HasErrors) {
+            return null;
+        }
+
+        if (actionResultDTO.ResultData == null ||
+            actionResultDTO.ResultData === "") {
             return null;
         }
 
@@ -44,8 +48,7 @@ export class LoginService implements ILogin
         return userDTO;
     }
 
-    SignIn(userDTO: UserDTO): Observable<Response>
-    {
+    SignIn(userDTO: UserDTO): Observable<Response> {
         let requestOptions: Request = new Request({
             url: UtilsConstants.LOGIN_URLS.SIGN_IN_URL,
             method: RequestMethod.Post,
@@ -55,8 +58,7 @@ export class LoginService implements ILogin
         return this.DoRequest(requestOptions);
     }
 
-    LogOut(): Observable<Response>
-    {
+    LogOut(): Observable<Response> {
         let requestOptions = new Request({
             method: RequestMethod.Get,
             url: ""
@@ -65,8 +67,7 @@ export class LoginService implements ILogin
         return this.DoRequest(requestOptions);
     }
 
-    SignUp(userDTO: UserDTO): Observable<Response>
-    {
+    SignUp(userDTO: UserDTO): Observable<Response> {
         let requestOptions = new Request({
             url: "",
             method: RequestMethod.Post,
@@ -78,8 +79,7 @@ export class LoginService implements ILogin
 
     //##### Private Methods
 
-    private DoRequest(requestOptions: Request): Observable<Response>
-    {
+    private DoRequest(requestOptions: Request): Observable<Response> {
         return this._http.request(requestOptions)
             .map((response: Response) => response)
             .catch((error: Response) => Observable.throw(error.json().error || 'Server error'));

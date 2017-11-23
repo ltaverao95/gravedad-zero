@@ -8,7 +8,7 @@
             try
             {
                 $responseDTO = $this->ValidateCurrentUser($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -48,7 +48,7 @@
             {
                 $loginDAL = new LoginDAL();
                 $responseDTO = $this->ValidatePassword($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -71,7 +71,7 @@
             {
                 $loginDAL = new LoginDAL();
                 $responseDTO = $this->ValidateUserName($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -96,7 +96,7 @@
             {
                 $loginDAL = new LoginDAL();
                 $responseDTO = $this->ValidateCompleteUser($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -135,7 +135,7 @@
             {
                 $loginDAL = new LoginDAL();
                 $responseDTO = $this->ValidateCurrentUserID($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -162,7 +162,7 @@
             {
                 $loginDAL = new LoginDAL();
                 $responseDTO = $this->ValidateLoginDTO($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -202,7 +202,7 @@
             {
                 $loginDAL = new LoginDAL();
                 $responseDTO = $this->ValidateCurrentUserID($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -225,7 +225,7 @@
             {
                 $loginDAL = new LoginDAL();
                 $responseDTO = $this->ValidateItemsSelected($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -339,7 +339,7 @@
             try
             {
                 $responseDTO = $this->ValidateCurrentUser($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -351,7 +351,7 @@
                 }
 
                 $responseDTO = $this->ValidateLoginDTO($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }

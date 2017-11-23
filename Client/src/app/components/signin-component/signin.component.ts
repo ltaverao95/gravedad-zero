@@ -7,6 +7,7 @@ import { UserDTO } from '../../../DTO/User/UserDTO';
 import { LoginService } from '../../../Core/Services/LoginService';
 import { AESEncryption } from '../../../Blocks/Crypt/Services/AESEncryption';
 import { ResourceMessages } from '../../../Blocks/Messages/Services/ResourceMessages';
+import { LoginRestoreViews } from '../../../Core/Services/LoginRestoreViews';
 
 @Component({
     selector: 'signin',
@@ -15,19 +16,19 @@ import { ResourceMessages } from '../../../Blocks/Messages/Services/ResourceMess
     providers: [
         LoginService,
         AESEncryption,
-        ResourceMessages
+        ResourceMessages,
+        LoginRestoreViews
     ]
 })
 export class SigninComponent {
-    private _userDTO: UserDTO;
     public loginFormGroup: FormGroup;
     public showErrorMessage: boolean = false;
     public errorMessage: string = null;
 
     constructor(private _router: Router,
-                private _loginService: LoginService,
-                private _resourceMessages: ResourceMessages) {
-        this._userDTO = new UserDTO();
+        private _loginService: LoginService,
+        private _resourceMessages: ResourceMessages,
+        private _loginRestoreViews: LoginRestoreViews) {
         this.loginFormGroup = new FormGroup({
             user_name: new FormControl('', [Validators.required]),
             password: new FormControl('', [Validators.required])
@@ -35,19 +36,19 @@ export class SigninComponent {
     }
 
     public signin() {
-        
-        if(this._loginService.isLoginValid()){
+
+        if (this._loginService.isLoginValid()) {
             this.showErrorMessageFn(this._resourceMessages.GetResourceMessage("ERROR_SIGNIN_ALREADY_AUTENTICATED"));
             return;
         }
 
-        this._userDTO.UserName = this.loginFormGroup.controls.user_name.value;
-        this._userDTO.Password = this.loginFormGroup.controls.password.value;
-
-        this._loginService.SignIn(this._userDTO).subscribe(
+        this._loginService.SignIn({
+            UserName: this.loginFormGroup.controls.user_name.value,
+            Password: this.loginFormGroup.controls.password.value
+        } as UserDTO).subscribe(
             response => {
                 let actionResultDTO: ActionResultDTO = response.json();
-                
+
                 if (actionResultDTO.HasErrors) {
                     this.showErrorMessageFn(actionResultDTO.UIMessage);
                     return;
@@ -55,15 +56,16 @@ export class SigninComponent {
 
                 this.showErrorMessage = false;
                 localStorage.setItem('user_session', actionResultDTO.ResultData);
+                this._loginRestoreViews.setViewsWithCurrentUserLogged();
                 this._router.navigateByUrl('/home');
             },
             err => {
                 console.log(err);
             }
-        );
+            );
     }
 
-    private showErrorMessageFn(errorMessage: string): void{
+    private showErrorMessageFn(errorMessage: string): void {
         this.showErrorMessage = true;
         this.errorMessage = errorMessage;
     }

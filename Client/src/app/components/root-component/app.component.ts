@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 import { LoginService } from '../../../Core/Services/LoginService';
 import { AESEncryption } from '../../../Blocks/Crypt/Services/AESEncryption';
@@ -18,10 +19,13 @@ import { CoreConstants } from '../../../Core/constants';
 export class AppComponent {
 
   public enumUserPermissions = CoreConstants.EnumUserPermission;
+  public static updateUserStatus: Subject<boolean> = new Subject();
 
   constructor(public loginService: LoginService,
     public currentUser: UserDTO) {
     this.currentUser = this.loginService.getLoggedUser();
-    this.currentUser.Role = "admin";
+    AppComponent.updateUserStatus.subscribe(res => {
+      this.currentUser = this.loginService.getLoggedUser();
+    });
   }
 }

@@ -13,7 +13,7 @@
 		$commonValidationsService = new CommonValidationsService();
 
 		$responseDTO = $commonValidationsService->ValidateDataEncrypted($requestJson);
-		if($responseDTO->HasError)
+		if($responseDTO->HasErrors)
 		{
 			echo json_encode($responseDTO);
 			return;

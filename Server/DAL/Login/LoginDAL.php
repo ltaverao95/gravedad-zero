@@ -127,13 +127,13 @@
             try
             {
                 $responseDTO = $this->DeleteCurrentItems();
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
 
                 $responseDTO = $this->ValidateLastRecordToResetAutoIncement();
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -155,13 +155,13 @@
             try
             {
                 $responseDTO = $this->DeleteCurrentItem($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
 
                 $responseDTO = $this->ValidateLastRecordToResetAutoIncement();
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -182,13 +182,13 @@
             try
             {
                 $responseDTO = $this->DeleteCurrentItemsSelected($userDTO);      
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
 
                 $responseDTO = $this->ValidateLastRecordToResetAutoIncement();
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -220,7 +220,7 @@
                 $getDataServiceDAL = new GetDataServiceDAL();
                 $query = "SELECT * FROM login";
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -230,14 +230,14 @@
                 {
                     $query = "ALTER TABLE login AUTO_INCREMENT = 1";
                     $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                    if($responseDTO->HasError)
+                    if($responseDTO->HasErrors)
                     {
                         return $responseDTO;
                     }
 
                     $query = "ALTER TABLE user_logued_inf";
                     $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                    if($responseDTO->HasError)
+                    if($responseDTO->HasErrors)
                     {
                         return $responseDTO;
                     }
@@ -268,7 +268,7 @@
                     ':password' =>$userDTO->Password);
                     
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -313,7 +313,7 @@
                     ':id_login_user' => $userDTO->IDLoginUser);
 
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -368,7 +368,7 @@
                     ':email' => $userDTO->UserAdminModel->Email
                 );
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -399,7 +399,7 @@
                     ':id_login_user' => $userDTO->IDLoginUser
                 );
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -425,13 +425,13 @@
                 $getDataServiceDAL = new GetDataServiceDAL();
                 $query = "TRUNCATE TABLE user_logued_info";
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
                 $query = "DELETE FROM login;";
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -457,7 +457,7 @@
                 "FROM user_logued_info user_logued_inf ".
                 "inner join login login_user on user_logued_inf.id_login_user = login_user.id_login_user";
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -504,7 +504,7 @@
                     ':phone' => $userDTO->UserAdminModel->Phone,
 				    ':email' => $userDTO->UserAdminModel->Email);
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -526,7 +526,7 @@
             try
             {
                 $responseDTO = $this->GetCurrentLoggedUser($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -557,7 +557,7 @@
                     ':user_name' => $userDTO->UserName);
 
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -589,7 +589,7 @@
                 $dataBaseServicesBLL = new DataBaseServicesBLL();
                 $getDataServiceDAL = new GetDataServiceDAL();
                 $responseDTO = $this->GetCurrentLoggedUser($userDTO);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -607,7 +607,7 @@
                     ':password' => $userDTO->Password
                 );
                 $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
-                if($responseDTO->HasError)
+                if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
@@ -633,7 +633,7 @@
                 for ($i=0; $i < count($userDTO); $i++) 
                 {
                     $responseDTO = $this->DeleteCurrentItem($userDTO[$i]);
-                    if($responseDTO->HasError)
+                    if($responseDTO->HasErrors)
                     {
                         return $responseDTO;
                     }
