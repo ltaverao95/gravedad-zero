@@ -51,6 +51,7 @@ export class SigninComponent {
 
                 if (actionResultDTO.HasErrors) {
                     this.showErrorMessageFn(actionResultDTO.UIMessage);
+                    console.log(actionResultDTO.StackTrace);
                     return;
                 }
 

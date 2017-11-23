@@ -9,7 +9,7 @@
             {
                 $responseDTO = $this->ValidateCurrentUser($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -25,7 +25,7 @@
             {
                 $responseDTO = $this->UpdateCurrentUserPassword($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -41,7 +41,7 @@
             {
                 $responseDTO = $this->ValidateCurrentUserIfExists($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -59,7 +59,7 @@
             {
                 $responseDTO = $this->SaveCurrentUser($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante el guardado de los datos", $e->getMessage());	
             }
@@ -75,7 +75,7 @@
             {
                 $responseDTO = $this->GetUsers();   
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante el guardado de los datos", $e->getMessage());	
             }
@@ -91,7 +91,7 @@
             {
                 $responseDTO = $this->GetCurrentLoggedUser($userDTO);   
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema tratando de obtener los datos", $e->getMessage());
             }
@@ -112,7 +112,7 @@
             {
                 $responseDTO = $this->UpdateCurrentLoggedUser($userDTO);   
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema tratando de actualizar los datos", $e->getMessage());
             }
@@ -140,7 +140,7 @@
 
                 $responseDTO->UIMessage = "Registros eliminados!";
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la eliminación de los datos", $e->getMessage());	
             }
@@ -168,7 +168,7 @@
 
                 $responseDTO->UIMessage = "Registro eliminado!";
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se eliminaban los datos", $e->getMessage());	
             }
@@ -202,7 +202,7 @@
                     $responseDTO->UIMessage = "Registro eliminado!";
                 }
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se eliminaban los datos", $e->getMessage());	
             }
@@ -243,7 +243,7 @@
                     }
                 } 
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetMessageErrorAndStackTrace("Ocurrió un error tratando de validar los registros", $e->getMessage());
             }
@@ -290,7 +290,7 @@
                 $responseDTO->ResultData = $encryptionService->encrypt(json_encode($userDTO));
                 $dataBaseServicesBLL->connection = null;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -323,7 +323,7 @@
                 $responseDTO = $getDataServiceDAL->GetLoggedUserItems($result);
                 $dataBaseServicesBLL->connection = null;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -375,7 +375,7 @@
                 $responseDTO->UIMessage = "Registro actualizado!";
                 $dataBaseServicesBLL->connection = null;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se actualizaban de los datos", $e->getMessage());
             }
@@ -407,7 +407,7 @@
         		$responseDTO->UIMessage = "Registro eliminado!";
                 $dataBaseServicesBLL->connection = null;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se eliminaban de los datos", $e->getMessage());
             }
@@ -437,7 +437,7 @@
                 }
                 $dataBaseServicesBLL->connection = null;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se borraban los datos", $e->getMessage());	
             }
@@ -466,7 +466,7 @@
                 $responseDTO = $getDataServiceDAL->GetLoggedUserItems($result);
                 $dataBaseServicesBLL->connection = null;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la obtención de los datos", $e->getMessage());	
             }
@@ -511,7 +511,7 @@
         		$responseDTO->UIMessage = "Usuario creado!";
                 $dataBaseServicesBLL->connection = null;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la creación del usuario", $e->getMessage());	
             }
@@ -536,7 +536,7 @@
                     return $responseDTO;
                 }
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -572,7 +572,7 @@
                 $responseDTO->UIMessage = "Usuario disponible!";
                 $dataBaseServicesBLL->connection = null;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -614,7 +614,7 @@
                 $responseDTO->UIMessage = "Contraseña actualizada!";
                 $dataBaseServicesBLL->connection = null;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se actualizaban de los datos", $e->getMessage());
             }
@@ -641,7 +641,7 @@
 
                 $dataBaseServicesBLL->connection = null;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se eliminaban los datos", $e->getMessage());	
             }

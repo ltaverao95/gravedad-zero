@@ -13,7 +13,7 @@
                 $postDAL = new PostDAL();
                 $responseDTO = $postDAL->GetAllItems();
             } 
-            catch (Exception $e) 
+            catch (Throwable $e) 
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema obteniendo los datos", $e->getMessage());		
             }

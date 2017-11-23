@@ -16,7 +16,7 @@
                 $loginDAL = new LoginDAL();
                 $responseDTO = $loginDAL->SignIn($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -33,7 +33,7 @@
                 session_destroy();
                 $responseDTO->UIMessage = "Sesión Finalizada con éxito!";
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -55,7 +55,7 @@
 
                 $responseDTO = $loginDAL->UpdateUserPassword($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -78,7 +78,7 @@
 
                 $responseDTO = $loginDAL->ValidateUserIfExists($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -103,7 +103,7 @@
 
                 $responseDTO = $loginDAL->SaveItem($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante el guardado de los datos", $e->getMessage());	
             }
@@ -120,7 +120,7 @@
                 $loginDAL = new LoginDAL();
                 $responseDTO = $loginDAL->GetAllItems();
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante el guardado de los datos", $e->getMessage());	
             }
@@ -142,7 +142,7 @@
 
                 $responseDTO = $loginDAL->GetItemByID($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -169,7 +169,7 @@
 
                 $responseDTO = $loginDAL->UpdateItemByID($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema durante la verificación de los datos", $e->getMessage());
             }
@@ -186,7 +186,7 @@
                 $loginDAL = new LoginDAL();
                 $responseDTO = $loginDAL->DeleteAllItems();
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se eliminaban los datos", $e->getMessage());	
             }
@@ -209,7 +209,7 @@
 
                 $responseDTO = $loginDAL->DeleteItemByID($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se eliminaban los datos", $e->getMessage());	
             }
@@ -232,7 +232,7 @@
 
                 $responseDTO = $loginDAL->DeleteItemsSelected($userDTO);
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se eliminaban los datos", $e->getMessage());	
             }
@@ -266,7 +266,7 @@
                     return $responseDTO;
                 }
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se validaban los datos", $e->getMessage());
             }
@@ -286,7 +286,7 @@
                     return $responseDTO;
                 }
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se validaban los datos", $e->getMessage());
             }
@@ -324,7 +324,7 @@
                     return $responseDTO;
                 }
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se validaban los datos", $e->getMessage());
             }
@@ -356,7 +356,7 @@
                     return $responseDTO;
                 }
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se validaban los datos", $e->getMessage());
             }
@@ -376,7 +376,7 @@
                     return $responseDTO;
                 }
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se validaban los datos", $e->getMessage());
             }
@@ -396,7 +396,7 @@
                     return $responseDTO;
                 }
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se validaban los datos", $e->getMessage());
             }
@@ -417,7 +417,7 @@
                     return $responseDTO;
                 }
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetErrorAndStackTrace("Ocurrió un problema mientras se validaban los datos", $e->getMessage());	
             }

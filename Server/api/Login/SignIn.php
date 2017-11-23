@@ -19,10 +19,10 @@
 			return;
 		}
 
-		$loginBLL = new LoginBLL();
+		$loginBLL = new LoginBL();
 		$responseDTO = $loginBLL->SignIn($responseDTO->ResultData);
 	} 
-	catch (Exception $e) 
+	catch (Throwable $e) 
 	{
 		$responseDTO->SetErrorAndStackTrace("Ocurrió un problema autenticando el usuario.", $e->getMessage());		
 	}
