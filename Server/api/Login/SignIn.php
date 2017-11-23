@@ -19,7 +19,7 @@
 			return;
 		}
 
-		$loginBLL = new LoginBL();
+		$loginBLL = new LoginBLL();
 		$responseDTO = $loginBLL->SignIn($responseDTO->ResultData);
 	} 
 	catch (Throwable $e) 

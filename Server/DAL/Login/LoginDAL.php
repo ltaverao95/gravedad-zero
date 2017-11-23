@@ -262,7 +262,9 @@
                 $dataBaseServicesBLL = new DataBaseServicesBLL();
                 $encryptionService = new CryptoJSAES();
 
-                $query = "SELECT * FROM public.\"user\" WHERE user_name = :user_name AND password = :password";
+                $query = "SELECT * FROM public.\"user\" usr ".
+                         "INNER JOIN user_detail usr_dtl on usr.id_user = usr_dtl.id_user ".
+                         "WHERE usr.user_name = :user_name AND password = :password;";
                 $dataBaseServicesBLL->ArrayParameters = array(
                     ':user_name' => $userDTO->UserName, 
                     ':password' =>$userDTO->Password);
@@ -286,6 +288,13 @@
                 $userDTO->UserName = $rowUser["user_name"];
                 $userDTO->Password = $rowUser["password"];
                 $userDTO->Role = $rowUser["role"];
+                $userDTO->UserDetail = new UserDetailDTO();
+                $userDTO->UserDetail->IdUserDetail = $rowUser["id_user_detail"];
+                $userDTO->UserDetail->Name = $rowUser["name"];
+                $userDTO->UserDetail->Surname = $rowUser["surname"];
+                $userDTO->UserDetail->Email = $rowUser["email"];
+                $userDTO->UserDetail->IdUser = $rowUser["id_user"];
+                $userDTO->UserDetail->ProfilePhoto = $rowUser["profile_photo"];
 
                 $responseDTO->ResultData = $encryptionService->encrypt(json_encode($userDTO));
                 $dataBaseServicesBLL->connection = null;

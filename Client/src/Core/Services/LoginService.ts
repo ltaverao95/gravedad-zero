@@ -10,12 +10,16 @@ import { UserDTO } from '../../DTO/User/UserDTO';
 import { UtilsConstants } from '../../Blocks/Utils/constants';
 import { AESEncryption } from '../../Blocks/Crypt/Services/AESEncryption';
 import { ActionResultDTO } from '../../Blocks/Utils/Services/ActionResultDTO';
+import { ResourceMessages } from '../../Blocks/Messages/Services/ResourceMessages';
 
 @Injectable()
 export class LoginService implements ILogin {
+
+    private _resourceMessages: ResourceMessages;
+
     constructor(private _http: Http,
         private _aesEncryption: AESEncryption) {
-
+            this._resourceMessages = new ResourceMessages();
     }
 
     isLoginValid() {
@@ -82,6 +86,6 @@ export class LoginService implements ILogin {
     private DoRequest(requestOptions: Request): Observable<Response> {
         return this._http.request(requestOptions)
             .map((response: Response) => response)
-            .catch((error: Response) => Observable.throw(error.json().error || 'Server error'));
+            .catch((error: Response) => Observable.throw(error.json().error || this._resourceMessages.GetResourceMessage("ERROR_DOING_REQUEST")));
     }
 }

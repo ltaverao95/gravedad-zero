@@ -61,6 +61,7 @@ export class SigninComponent {
                 this._router.navigateByUrl('/home');
             },
             err => {
+                this.showErrorMessageFn(this._resourceMessages.GetResourceMessage("ERROR_SIGNIN_WITH_SERVER"));
                 console.log(err);
             }
             );
