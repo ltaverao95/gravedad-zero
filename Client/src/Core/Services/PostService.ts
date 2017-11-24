@@ -1,105 +1,90 @@
-import { 
-    
-    ICrudOperations
+import { Injectable } from '@angular/core';
+import { Http, Response, Request, RequestMethod } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
- } from '../../common';
-import { ActionResultDTO } from '../../Blocks/Utils/Services/ActionResultDTO';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
-export class PostBLL implements ICrudOperations<any>
+import { UtilsConstants } from '../../Blocks/Utils/constants';
+import { AESEncryption } from '../../Blocks/Crypt/Services/AESEncryption';
+import { ResourceMessages } from '../../Blocks/Messages/Services/ResourceMessages';
+import { ICrudOperations } from '../../common/index';
+import { PostDTO } from '../../DTO/Post/PostDTO';
+
+@Injectable()
+export class PostService implements ICrudOperations<PostDTO>
 {
-    public GetAllItems(): ActionResultDTO
-    {
-        let actionResultDTO: ActionResultDTO = new ActionResultDTO();
+    private _resourceMessages: ResourceMessages;
 
-        try 
-        {
-            
-        } 
-        catch (error) 
-        {
-            actionResultDTO.SetErrorAndStackTrace("", error.message);    
-        }
-
-        return actionResultDTO;
+    constructor(private _http: Http,
+        private _aesEncryption: AESEncryption) {
+        this._resourceMessages = new ResourceMessages();
     }
 
-    public GetItemByID(itemID: number): ActionResultDTO
-    {
-        let actionResultDTO: ActionResultDTO = new ActionResultDTO();
+    public GetAllItems(): Observable<Response> {
+        let requestOptions: Request = new Request({
+            url: UtilsConstants.POST_URLS.GET_ALL_POSTS,
+            method: RequestMethod.Get
+        });
 
-        try 
-        {
-            
-        } 
-        catch (error) 
-        {
-            actionResultDTO.SetErrorAndStackTrace("", error.message);    
-        }
-
-        return actionResultDTO;
+        return this.DoRequest(requestOptions);
     }
 
-    public AddNewItem(itemDTO: any): ActionResultDTO
-    {
-        let actionResultDTO: ActionResultDTO = new ActionResultDTO();
+    public GetItemByID(itemID: number): Observable<Response> {
+        let requestOptions: Request = new Request({
+            url: UtilsConstants.LOGIN_URLS.SIGN_IN_URL,
+            method: RequestMethod.Post,
+            body: ''
+        });
 
-        try 
-        {
-            
-        } 
-        catch (error) 
-        {
-            actionResultDTO.SetErrorAndStackTrace("", error.message);    
-        }
-
-        return actionResultDTO;
+        return this.DoRequest(requestOptions);
     }
 
-    public UpdateItemByID(itemDTO: any): ActionResultDTO
-    {
-        let actionResultDTO: ActionResultDTO = new ActionResultDTO();
+    public AddNewItem(itemDTO: PostDTO): Observable<Response> {
+        let requestOptions: Request = new Request({
+            url: UtilsConstants.LOGIN_URLS.SIGN_IN_URL,
+            method: RequestMethod.Post,
+            body: ''
+        });
 
-        try 
-        {
-            
-        } 
-        catch (error) 
-        {
-            actionResultDTO.SetErrorAndStackTrace("", error.message);    
-        }
-
-        return actionResultDTO;
+        return this.DoRequest(requestOptions);
     }
 
-    public DeleteAllItems(): ActionResultDTO
-    {
-        let actionResultDTO: ActionResultDTO = new ActionResultDTO();
+    public UpdateItemByID(itemDTO: PostDTO): Observable<Response> {
+        let requestOptions: Request = new Request({
+            url: UtilsConstants.LOGIN_URLS.SIGN_IN_URL,
+            method: RequestMethod.Post,
+            body: ''
+        });
 
-        try 
-        {
-            
-        } 
-        catch (error) 
-        {
-            actionResultDTO.SetErrorAndStackTrace("", error.message);    
-        }
-
-        return actionResultDTO;
+        return this.DoRequest(requestOptions);
     }
 
-    public DeleteItemByID(itemDTO: any): ActionResultDTO
-    {
-        let actionResultDTO: ActionResultDTO = new ActionResultDTO();
+    public DeleteAllItems(): Observable<Response> {
+        let requestOptions: Request = new Request({
+            url: UtilsConstants.LOGIN_URLS.SIGN_IN_URL,
+            method: RequestMethod.Post,
+            body: ''
+        });
 
-        try 
-        {
-            
-        } 
-        catch (error) 
-        {
-            actionResultDTO.SetErrorAndStackTrace("", error.message);    
-        }
+        return this.DoRequest(requestOptions);
+    }
 
-        return actionResultDTO;
+    public DeleteItemByID(itemDTO: number): Observable<Response> {
+        let requestOptions: Request = new Request({
+            url: UtilsConstants.LOGIN_URLS.SIGN_IN_URL,
+            method: RequestMethod.Post,
+            body: ''
+        });
+
+        return this.DoRequest(requestOptions);
+    }
+
+    //##### Private Methods
+
+    private DoRequest(requestOptions: Request): Observable<Response> {
+        return this._http.request(requestOptions)
+            .map((response: Response) => response)
+            .catch((error: Response) => Observable.throw(error.json().error || this._resourceMessages.GetResourceMessage("ERROR_DOING_REQUEST")));
     }
 }

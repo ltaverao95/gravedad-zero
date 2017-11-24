@@ -10,4 +10,8 @@ export namespace UtilsConstants {
     export const LOGIN_URLS = {
         SIGN_IN_URL: UtilsConstants.SERVER_ABSOLUTE_PATH + "Login/SignIn.php"
     };
+
+    export const POST_URLS = {
+        GET_ALL_POSTS: UtilsConstants.SERVER_ABSOLUTE_PATH + "Post/GetAllPosts.php"
+    };
 }

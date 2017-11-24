@@ -9,9 +9,8 @@ export class PostDTO {
     public Id: number = null;
     public Title: string = null;
     public PostType: CoreConstants.EnumPostType = CoreConstants.EnumPostType.NEW;
-    public PostDetail: PostDetailDTO = null;
-
-    public PostCommentsList: Array<PostCommentDTO> = null;
+    public PostDetailDTO: PostDetailDTO = null;
+    public PostCommentsDTOList: Array<PostCommentDTO> = null;
 
     private _utilsFactory: UtilsFactory;
     private _resourceMessages: ResourceMessages;
@@ -39,13 +38,13 @@ export class PostDTO {
             return actionResultDTO;
         }
 
-        return this.PostDetail.ValidatePostDetailDTO();
+        return this.PostDetailDTO.ValidatePostDetailDTO();
     }
 
     public ValidatePostCommentsList(): ActionResultDTO {
         let actionResultDTO = new ActionResultDTO();
 
-        if (!this._utilsFactory.IsArrayNullOrEmpty(this.PostCommentsList)) {
+        if (!this._utilsFactory.IsArrayNullOrEmpty(this.PostCommentsDTOList)) {
             actionResultDTO.SetError(this._resourceMessages.GetResourceMessage("INF_POSTDTO_COMMENTS_LIST_EMPTY"));
             return actionResultDTO;
         }

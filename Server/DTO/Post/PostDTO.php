@@ -4,8 +4,11 @@
     {
         public $Id = null;
         public $Title = null;
-        public $Description = null;
+        public $PostType = null;
         public $ImageURL = null;
+        
+        public $PostDetailDTO = null;
+        public $PostCommentsDTOList = null;
     }
 
 ?>
