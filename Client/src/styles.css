@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body{
 	background: #e8e8e8 !important;
+	overflow-x: hidden;
 }
 
 .footer_gz{
@@ -29,12 +30,12 @@ body{
 
 .header_gz{
 	background: white;
+	width: 99.9%;
 }
 
 .header_gz figure{
 	background: grey;
 	height: 150px;
-	margin: 0 auto;
 	width: 100%;
 }
 
