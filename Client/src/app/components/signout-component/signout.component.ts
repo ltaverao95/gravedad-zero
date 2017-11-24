@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'signout',
@@ -7,8 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./signout.component.css']
 })
 export class SignOutComponent {
+
   constructor(private _router: Router) {
-    localStorage.removeItem('user_session');
-    this._router.navigateByUrl("/home");
+    Observable.timer(1100)
+      .subscribe(x => {
+        localStorage.removeItem('user_session');
+        this._router.navigateByUrl("/home");
+      });
   }
 }

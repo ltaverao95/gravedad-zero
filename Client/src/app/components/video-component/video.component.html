@@ -1,11 +1,11 @@
 <section class="videos">
     <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9">
+        <div [ngClass]="loginService.isLoginValid() && (currentUser != null && currentUser.Role != enumUserPermissions.READ) ? 'col-xs-12 col-sm-9 col-md-9' : 'col-xs-12 col-sm-12 col-md-12'">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/wfh2dBWRMSk"></iframe>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3">
+        <div class="col-xs-12 col-sm-3 col-md-3" *ngIf="loginService.isLoginValid() && (currentUser != null && currentUser.Role != enumUserPermissions.READ)">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title text-center">Opciones</h3>
@@ -13,9 +13,9 @@
                 <div class="panel-body" style="padding: 0px">
                     <ul>
                         <ul class="nav nav-pills nav-stacked navegation_options">
-                            <li><a data-toggle="modal" data-target="#upload_new_video_modal">Cargar nuevo vídeo</a></li>
-                            <li><a data-toggle="modal" data-target="#edit_video_modal">Editar vídeo</a></li>
-                            <li><a data-toggle="modal" data-target="#delete_video_modal">Eliminar vídeo</a></li>
+                            <li><a data-toggle="modal" data-target="#upload_new_video_modal" href="">Cargar nuevo vídeo</a></li>
+                            <li><a data-toggle="modal" data-target="#edit_video_modal" href="">Editar vídeo</a></li>
+                            <li><a data-toggle="modal" data-target="#delete_video_modal" href="">Eliminar vídeo</a></li>
                         </ul>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/3q4es97LrvI"></iframe>
             </div>
-            <div class="pull-right">
+            <div class="pull-right" *ngIf="loginService.isLoginValid() && (currentUser != null && currentUser.Role != enumUserPermissions.READ)">
                 <button class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </button>

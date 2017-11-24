@@ -6,7 +6,6 @@ import { AESEncryption } from '../../../Blocks/Crypt/Services/AESEncryption';
 import { UserDTO } from '../../../DTO/User/UserDTO';
 import { CoreConstants } from '../../../Core/constants';
 
-
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',

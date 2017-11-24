@@ -33,6 +33,11 @@ export class SigninComponent {
             user_name: new FormControl('', [Validators.required]),
             password: new FormControl('', [Validators.required])
         });
+
+        this.loginFormGroup.setValue({
+            user_name: "admin",
+            password: "123"
+        });
     }
 
     public signin() {
