@@ -6,6 +6,12 @@ export class UtilsFactory
                 objToValidate === undefined);
     }
 
+    public IsValidNumber(numberToValidate: number) : boolean
+    {
+        return !(this.IsUndefinedOrNull(numberToValidate) ||
+                 isNaN(numberToValidate));
+    }
+
     public IsValidString(stringToValidate: string) : boolean
     {
         return !(this.IsUndefinedOrNull(stringToValidate) ||
@@ -13,7 +19,7 @@ export class UtilsFactory
                  stringToValidate.length === 0);
     }
 
-    public IsArrayNullOrEmpty(arrayToValidate: any) : boolean
+    public IsArrayNullOrEmpty(arrayToValidate: Array<any>) : boolean
     {
         return !(this.IsUndefinedOrNull(arrayToValidate) ||
                  arrayToValidate.length === 0);

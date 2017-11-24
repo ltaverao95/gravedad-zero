@@ -1,12 +1,15 @@
 import { ActionResultDTO } from '../../Blocks/Utils/Services/ActionResultDTO';
 import { UtilsFactory } from '../../Blocks/Utils/Services/UtilsFactory';
 import { ResourceMessages } from '../../Blocks/Messages/Services/ResourceMessages';
+import { CoreConstants } from '../../Core/index';
 
-export class NewsDTO
+export class PostDetailDTO
 {
-    public Title: string = null;
-    public Description: string = null;
-    public OwnerPhoto: string = null;
+    public IdPostDetail: number = null;
+    public Message: string = null;
+    public PhotoUrl: string = null;
+    public DatePublished: Date = new Date();
+    public IdPost: number = null;
 
     private _utilsFactory: UtilsFactory;
     private _resourceMessages: ResourceMessages;
@@ -17,19 +20,13 @@ export class NewsDTO
         this._resourceMessages = new ResourceMessages();
     }
 
-    public ValidateNewsDTO() : ActionResultDTO
+    public ValidatePostDetailDTO() : ActionResultDTO
     {
         var actionResultDTO = new ActionResultDTO();
 
-        if(!this._utilsFactory.IsValidString(this.Title))
+        if(!this._utilsFactory.IsValidString(this.Message))
         {
-            actionResultDTO.SetError(this._resourceMessages.GetResourceMessage("ERROR_NEWS_DTO_TITLE_EMPTY"));
-            return actionResultDTO;
-        }
-
-        if(!this._utilsFactory.IsValidString(this.Description))
-        {
-            actionResultDTO.SetError(this._resourceMessages.GetResourceMessage("ERROR_NEWS_DTO_DESCRIPTION_EMPTY"));
+            actionResultDTO.SetError(this._resourceMessages.GetResourceMessage("ERROR_POSTDETAILDTO_MESSAGE_EMPTY"));
             return actionResultDTO;
         }
 
