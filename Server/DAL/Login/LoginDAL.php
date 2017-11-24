@@ -216,27 +216,27 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
                 $getDataServiceDAL = new GetDataServiceDAL();
                 $query = "SELECT * FROM login";
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
                 //Recuperar los registros de la BD
-                $result = $dataBaseServicesBLL->Q->fetchAll();	
+                $result = $dataBaseServicesDAL->Q->fetchAll();	
                 if($result == null)
                 {
                     $query = "ALTER TABLE login AUTO_INCREMENT = 1";
-                    $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                    $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                     if($responseDTO->HasErrors)
                     {
                         return $responseDTO;
                     }
 
                     $query = "ALTER TABLE user_logued_inf";
-                    $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                    $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                     if($responseDTO->HasErrors)
                     {
                         return $responseDTO;
@@ -259,45 +259,35 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
+                $getDataServiceDAL = new GetDataServiceDAL();
                 $encryptionService = new CryptoJSAES();
 
                 $query = "SELECT * FROM public.\"user\" usr ".
-                         "INNER JOIN user_detail usr_dtl on usr.id_user = usr_dtl.id_user ".
+                         "INNER JOIN user_detail usr_dtl ON usr.id_user = usr_dtl.id_user ".
                          "WHERE usr.user_name = :user_name AND password = :password;";
-                $dataBaseServicesBLL->ArrayParameters = array(
+                $dataBaseServicesDAL->ArrayParameters = array(
                     ':user_name' => $userDTO->UserName, 
                     ':password' =>$userDTO->Password);
                     
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
 
-        		$rowUser = $dataBaseServicesBLL->Q->fetch(PDO::FETCH_ASSOC);
-		
-                if($rowUser == NULL)
+                //Recuperar los registros de la BD
+                $result = $dataBaseServicesDAL->Q->fetch(PDO::FETCH_ASSOC);
+                $responseDTO = $getDataServiceDAL->GetUserItem($result);
+                $dataBaseServicesDAL->connection = null;
+                
+                if($responseDTO->HasErrors)
                 {
-                    $responseDTO->SetError("Usuario y/o contraseña inválidos, intente de nuevo.");
                     return $responseDTO;
                 }
 
-                $userDTO = new UserDTO();
-                $userDTO->Id = $rowUser["id_user"];
-                $userDTO->UserName = $rowUser["user_name"];
-                $userDTO->Password = $rowUser["password"];
-                $userDTO->Role = $rowUser["role"];
-                $userDTO->UserDetail = new UserDetailDTO();
-                $userDTO->UserDetail->IdUserDetail = $rowUser["id_user_detail"];
-                $userDTO->UserDetail->Name = $rowUser["name"];
-                $userDTO->UserDetail->Surname = $rowUser["surname"];
-                $userDTO->UserDetail->Email = $rowUser["email"];
-                $userDTO->UserDetail->IdUser = $rowUser["id_user"];
-                $userDTO->UserDetail->ProfilePhoto = $rowUser["profile_photo"];
-
-                $responseDTO->ResultData = $encryptionService->encrypt(json_encode($userDTO));
-                $dataBaseServicesBLL->connection = null;
+                $responseDTO->ResultData = $encryptionService->encrypt(json_encode($responseDTO->ResultData));
+                $dataBaseServicesDAL->connection = null;
             }
             catch (Throwable $e)
             {
@@ -313,24 +303,24 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
                 $getDataServiceDAL = new GetDataServiceDAL();
 
                 $query = "SELECT user_logued_inf.*, login_user.* FROM user_logued_info user_logued_inf inner join login login_user on user_logued_inf.id_login_user = login_user.id_login_user WHERE login_user.id_login_user = :id_login_user";
                 
-                $dataBaseServicesBLL->ArrayParameters = array(
+                $dataBaseServicesDAL->ArrayParameters = array(
                     ':id_login_user' => $userDTO->IDLoginUser);
 
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
 
         		//Recuperar los registros de la BD
-                $result = $dataBaseServicesBLL->Q->fetchAll();	
+                $result = $dataBaseServicesDAL->Q->fetchAll();	
                 $responseDTO = $getDataServiceDAL->GetLoggedUserItems($result);
-                $dataBaseServicesBLL->connection = null;
+                $dataBaseServicesDAL->connection = null;
             }
             catch (Throwable $e)
             {
@@ -346,7 +336,7 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
                 $getDataServiceDAL = new GetDataServiceDAL();
                 $query = 
                 "SET foreign_key_checks = 0; ".
@@ -365,7 +355,7 @@
                 "    email = :email ".
                 "WHERE id_login_user = :id_login_user; ".
                 "SET foreign_key_checks = 1;";
-                $dataBaseServicesBLL->ArrayParameters = array(
+                $dataBaseServicesDAL->ArrayParameters = array(
                     ':id_login_user' => $userDTO->IDLoginUser,
                     ':user_name' => $userDTO->UserName,
                     ':password' => $userDTO->Password,
@@ -376,13 +366,13 @@
                     ':phone' => $userDTO->UserAdminModel->Phone,
                     ':email' => $userDTO->UserAdminModel->Email
                 );
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
                 $responseDTO->UIMessage = "Registro actualizado!";
-                $dataBaseServicesBLL->connection = null;
+                $dataBaseServicesDAL->connection = null;
             }
             catch (Throwable $e)
             {
@@ -398,23 +388,23 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
                 $getDataServiceDAL = new GetDataServiceDAL();
                 $query = "DELETE user_logued_inf.*, login_user.* ".
                 "FROM user_logued_info user_logued_inf ".
                 "inner join login login_user on user_logued_inf.id_login_user = login_user.id_login_user ".
                 "WHERE user_logued_inf.id_login_user = :id_login_user";
-                $dataBaseServicesBLL->ArrayParameters = array(
+                $dataBaseServicesDAL->ArrayParameters = array(
                     ':id_login_user' => $userDTO->IDLoginUser
                 );
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
 
         		$responseDTO->UIMessage = "Registro eliminado!";
-                $dataBaseServicesBLL->connection = null;
+                $dataBaseServicesDAL->connection = null;
             }
             catch (Throwable $e)
             {
@@ -430,21 +420,21 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
                 $getDataServiceDAL = new GetDataServiceDAL();
                 $query = "TRUNCATE TABLE user_logued_info";
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
                 $query = "DELETE FROM login;";
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
-                $dataBaseServicesBLL->connection = null;
+                $dataBaseServicesDAL->connection = null;
             }
             catch (Throwable $e)
             {
@@ -460,20 +450,20 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
                 $getDataServiceDAL = new GetDataServiceDAL();
                 $query = "SELECT user_logued_inf.*, login_user.* ".
                 "FROM user_logued_info user_logued_inf ".
                 "inner join login login_user on user_logued_inf.id_login_user = login_user.id_login_user";
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
                 //Recuperar los registros de la BD
-                $result = $dataBaseServicesBLL->Q->fetchAll();	
+                $result = $dataBaseServicesDAL->Q->fetchAll();	
                 $responseDTO = $getDataServiceDAL->GetLoggedUserItems($result);
-                $dataBaseServicesBLL->connection = null;
+                $dataBaseServicesDAL->connection = null;
             }
             catch (Throwable $e)
             {
@@ -489,7 +479,7 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
                 $query = "INSERT INTO login ".
                 "SET id_login_user = :id_login_user, ".
                 "user_name = :user_name, ".
@@ -502,7 +492,7 @@
                 "surname = :surname, ".
                 "phone = :phone, ".
                 "email = :email;";
-                $dataBaseServicesBLL->ArrayParameters = array(
+                $dataBaseServicesDAL->ArrayParameters = array(
                     ':id_login_user' => NULL, 
                     ':user_name' => $userDTO->UserName,
                     ':password' => $userDTO->Password,
@@ -512,13 +502,13 @@
                     ':surname' => $userDTO->UserAdminModel->Surname,
                     ':phone' => $userDTO->UserAdminModel->Phone,
 				    ':email' => $userDTO->UserAdminModel->Email);
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
         		$responseDTO->UIMessage = "Usuario creado!";
-                $dataBaseServicesBLL->connection = null;
+                $dataBaseServicesDAL->connection = null;
             }
             catch (Throwable $e)
             {
@@ -559,18 +549,18 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
 
                 $query = "SELECT * FROM public.\"user\" WHERE user_name = :user_name";
-                $dataBaseServicesBLL->ArrayParameters = array(
+                $dataBaseServicesDAL->ArrayParameters = array(
                     ':user_name' => $userDTO->UserName);
 
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
-        		$rowUser = $dataBaseServicesBLL->Q->fetch();
+        		$rowUser = $dataBaseServicesDAL->Q->fetch();
 		
                 if($rowUser != NULL)
                 {
@@ -579,7 +569,7 @@
                 }
                 
                 $responseDTO->UIMessage = "Usuario disponible!";
-                $dataBaseServicesBLL->connection = null;
+                $dataBaseServicesDAL->connection = null;
             }
             catch (Throwable $e)
             {
@@ -595,7 +585,7 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
                 $getDataServiceDAL = new GetDataServiceDAL();
                 $responseDTO = $this->GetCurrentLoggedUser($userDTO);
                 if($responseDTO->HasErrors)
@@ -611,17 +601,17 @@
                 "UPDATE login ".
                 "SET password = :password ".
                 "WHERE id_login_user = :id_login_user; ";
-                $dataBaseServicesBLL->ArrayParameters = array(
+                $dataBaseServicesDAL->ArrayParameters = array(
                     ':id_login_user' => $userDTO->IDLoginUser,
                     ':password' => $userDTO->Password
                 );
-                $responseDTO = $dataBaseServicesBLL->ExecuteQuery($query);
+                $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)
                 {
                     return $responseDTO;
                 }
                 $responseDTO->UIMessage = "Contraseña actualizada!";
-                $dataBaseServicesBLL->connection = null;
+                $dataBaseServicesDAL->connection = null;
             }
             catch (Throwable $e)
             {
@@ -637,7 +627,7 @@
 
             try
             {
-                $dataBaseServicesBLL = new DataBaseServicesBLL();
+                $dataBaseServicesDAL = new DataBaseServicesDAL();
                 $getDataServiceDAL = new GetDataServiceDAL();
                 for ($i=0; $i < count($userDTO); $i++) 
                 {
@@ -648,7 +638,7 @@
                     }
                 }
 
-                $dataBaseServicesBLL->connection = null;
+                $dataBaseServicesDAL->connection = null;
             }
             catch (Throwable $e)
             {

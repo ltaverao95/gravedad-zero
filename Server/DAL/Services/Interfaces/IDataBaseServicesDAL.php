@@ -1,6 +1,6 @@
 <?php 
 
-    interface IDataBaseServicesBLL
+    interface IDataBaseServicesDAL
     {
         public function InitializeDataBaseConnection();
         public function ExecuteQuery($query);

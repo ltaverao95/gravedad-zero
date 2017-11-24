@@ -39,21 +39,26 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading news_feed_title">Noticias</div>
 				<div class="panel-body news_feeds">
-					<div class="media">
+					
+					<div style="text-align: center">
+						<span *ngIf="postsList == null || postsList.length == 0 || postsList == []" 
+						  	  style="font-size: 18px">{{postMessages}}</span>
+					</div>
+
+					<div class="media" *ngFor="let post of postsList; let i = index" [ngClass]="postsList.length % i == 0 ? 'news_feeds_content' : ''">
 						<div class="media-left media-middle">
 							<a href="#">
-								<img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
+								<img class="media-object img-circle" [src]="post.PostDetailDTO.PhotoUrl == null ? 'assets/images/gzlogo.jpg' : post.PostDetailDTO.PhotoUrl" alt="user_picture">
 							</a>
 						</div>
 						<div class="media-body">
 							<h4 class="media-heading">
 								<a href="">
-									Middle aligned media
+									{{post.Title}}
 								</a>
 							</h4>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis magnam laboriosam modi quaerat, doloremque placeat perspiciatis
-								distinctio eos sit! Dignissimos eum consectetur vero perferendis iusto blanditiis nulla repellat repellendus, aliquid.
+								{{post.PostDetailDTO.Message}}
 							</p>
 						</div>
 
@@ -69,88 +74,6 @@
 									<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
 								</button>
 							</div>
-						</div>
-					</div>
-					<div class="media news_feeds_content">
-						<div class="media-left media-middle">
-							<a href="#">
-								<img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
-							</a>
-						</div>
-						<div class="media-body news_feeds_content">
-							<h4 class="media-heading">
-								<a href="">
-									Middle aligned media
-								</a>
-							</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis magnam laboriosam modi quaerat, doloremque placeat perspiciatis
-								distinctio eos sit! Dignissimos eum consectetur vero perferendis iusto blanditiis nulla repellat repellendus, aliquid.
-							</p>
-						</div>
-
-						<div style="text-align: center" *ngIf="loginService.isLoginValid()">
-							<div class="btn-group btn-group-xs" role="group">
-								<button class="btn btn-default">
-									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button class="btn btn-default">
-									<span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true"></span>
-								</button>
-								<button class="btn btn-default">
-									<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-								</button>
-							</div>
-						</div>
-					</div>
-					<div class="media">
-						<div class="media-left media-middle">
-							<a href="#">
-								<img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
-							</a>
-						</div>
-						<div class="media-body">
-							<h4 class="media-heading">
-								<a href="">
-									Middle aligned media
-								</a>
-							</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis magnam laboriosam modi quaerat, doloremque placeat perspiciatis
-								distinctio eos sit! Dignissimos eum consectetur vero perferendis iusto blanditiis nulla repellat repellendus, aliquid.
-							</p>
-						</div>
-
-						<div style="text-align: center" *ngIf="loginService.isLoginValid()">
-							<div class="btn-group btn-group-xs" role="group">
-								<button class="btn btn-default">
-									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button class="btn btn-default">
-									<span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true"></span>
-								</button>
-								<button class="btn btn-default">
-									<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-								</button>
-							</div>
-						</div>
-					</div>
-					<div class="media news_feeds_content">
-						<div class="media-left media-middle">
-							<a href="#">
-								<img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
-							</a>
-						</div>
-						<div class="media-body news_feeds_content">
-							<h4 class="media-heading">
-								<a href="">
-									Middle aligned media
-								</a>
-							</h4>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis magnam laboriosam modi quaerat, doloremque placeat perspiciatis
-								distinctio eos sit! Dignissimos eum consectetur vero perferendis iusto blanditiis nulla repellat repellendus, aliquid.
-							</p>
 						</div>
 					</div>
 				</div>
