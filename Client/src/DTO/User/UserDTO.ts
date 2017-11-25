@@ -2,6 +2,7 @@ import { UserDetailDTO } from './UserDetailDTO';
 import { UtilsFactory } from '../../Blocks/Utils/Services/UtilsFactory';
 import { ResourceMessages } from '../../Blocks/Messages/Services/ResourceMessages';
 import { ActionResultDTO } from '../../Blocks/Utils/Services/ActionResultDTO';
+import { PostDTO } from '../Post/PostDTO';
 
 export class UserDTO
 {
@@ -11,6 +12,7 @@ export class UserDTO
     public Role: string = null;
 
     public UserDetail: UserDetailDTO = null;
+    public PostDTOList: Array<PostDTO> = null;
 
     private _utilsFactory: UtilsFactory;
     private _resourceMessages: ResourceMessages;

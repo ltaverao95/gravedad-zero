@@ -69,11 +69,11 @@
 								</li>
 							</ul>
 
-							<hr *ngIf="currentUser != null && currentUser.Role != enumUserPermissions.READ">
-							<strong *ngIf="currentUser != null && currentUser.Role != enumUserPermissions.READ">
+							<hr *ngIf="currentUser != null && currentUser.Role != coreConstants.EnumUserPermission.READ">
+							<strong *ngIf="currentUser != null && currentUser.Role != coreConstants.EnumUserPermission.READ">
 								Actividad Rápida
 							</strong>
-							<ul class="user_quick_actions" *ngIf="currentUser != null && currentUser.Role != enumUserPermissions.READ">
+							<ul class="user_quick_actions" *ngIf="currentUser != null && currentUser.Role != coreConstants.EnumUserPermission.READ">
 								<li>
 									<a href="" data-toggle="modal" data-target="#new_post_modal">Publicación</a>
 								</li>
@@ -126,17 +126,43 @@
 			</div>
 
 			<div class="modal-body">
-				<form class="form-horizontal">
+				<form class="form-horizontal" [formGroup]="newPostFormGroup" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="post_title" class="col-sm-2 control-label">Título</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="post_title" placeholder="Título">
+							<input type="text" class="form-control" id="post_title" placeholder="Título" formControlName="title">
+
+							<div *ngIf="newPostFormGroup.get('title').dirty && newPostFormGroup.get('title').hasError('required')">
+								Este campo es requerido
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="post_type" class="col-sm-2 control-label">Tipo de Publicación</label>
+						<div class="col-sm-3">
+							<select id="post_type" class="form-control" formControlName="post_type">
+								<option value="{{coreConstants.EnumPostType.NEW}}" selected>Noticia</option>
+								<option value="{{coreConstants.EnumPostType.POST}}">Publicación</option>
+							</select>
+
+							<div *ngIf="newPostFormGroup.get('post_type').dirty && newPostFormGroup.get('post_type').hasError('required')">
+								Este campo es requerido
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="post_photo" class="col-sm-2 control-label">Imágen</label>
+						<div class="col-sm-10">
+							<input type="file" id="post_photo" accept="image/*" (change)="onFileChange($event)">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="post_message" class="col-sm-2 control-label">Mensaje</label>
 						<div class="col-sm-10">
-							<textarea class="form-control" id="post_message" cols="30" rows="10" style="resize: none"></textarea>
+							<textarea class="form-control" id="post_message" formControlName="message" cols="30" rows="10" style="resize: vertical"></textarea>
+							<div *ngIf="newPostFormGroup.get('message').dirty && newPostFormGroup.get('message').hasError('required')">
+								Este campo es requerido
+							</div>
 						</div>
 					</div>
 				</form>
@@ -144,7 +170,7 @@
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Publicar</button>
+				<button type="button" class="btn btn-primary" [disabled]="newPostFormGroup.invalid" (click)="newPost()">Publicar</button>
 			</div>
 
 		</div>

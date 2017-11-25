@@ -27,6 +27,8 @@ import { PageNotFoundComponent } from './components/page-not-found-component/pag
 
 import { EnsureAuthenticated } from '../Core/Services/EnsureAuthenticated';
 
+import { TruncatePipe } from '../common/TruncatePipe';
+
 const appRoutes: Routes = [
   { path: '', redirectTo: "/home", pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -117,7 +119,9 @@ const appRoutes: Routes = [
     AdminUserComponent,
     AdminHomeComponent,
     AdminMessageComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

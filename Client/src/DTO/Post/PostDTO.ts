@@ -4,11 +4,14 @@ import { ResourceMessages } from '../../Blocks/Messages/Services/ResourceMessage
 import { CoreConstants } from '../../Core/index';
 import { PostDetailDTO } from './PostDetailDTO';
 import { PostCommentDTO } from './PostCommentDTO';
+import { UserDTO } from '../User/UserDTO';
 
 export class PostDTO {
     public Id: number = null;
     public Title: string = null;
     public PostType: CoreConstants.EnumPostType = CoreConstants.EnumPostType.NEW;
+
+    public UserDTO: UserDTO = null;
     public PostDetailDTO: PostDetailDTO = null;
     public PostCommentsDTOList: Array<PostCommentDTO> = null;
 

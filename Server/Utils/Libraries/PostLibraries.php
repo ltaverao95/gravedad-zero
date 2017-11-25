@@ -8,4 +8,6 @@
 	include_once("../../DTO/Post/PostCommentDTO.php");
 	include_once("../../DTO/Post/PostDetailDTO.php");
 	include_once("../../DTO/Post/PostDTO.php");
+	include_once("../../DTO/User/UserDetailDTO.php");
+	include_once("../../DTO/User/UserDTO.php");
 ?>

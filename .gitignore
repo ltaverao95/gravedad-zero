@@ -44,3 +44,4 @@ Thumbs.db
 # Project Files To Ignore
 Client/src/assets/lib/*
 dist/*
+Server/App_Data/*

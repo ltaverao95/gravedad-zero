@@ -9,19 +9,11 @@
 	
 	try 
 	{
-        $postDTO = new PostDTO();
-        $postDTO->Title = $_POST["title"];
-        $postDTO->PostType = $_POST["post_type"];
-
-        $postDTO->UserDTO = new UserDTO();
-        $postDTO->UserDTO->Id = $_POST["id_user"];
-
-        $postDTO->PostDetailDTO = new PostDetailDTO();
-        $postDTO->PostDetailDTO->Message = $_POST["message"];
-        $postDTO->PostDetailDTO->PhotoUrl = $_FILES['photo'];
+		$requestJson = file_get_contents("php://input");
+		$requestObj = json_decode($requestJson);
 
 		$postBLL = new PostBLL();
-		$responseDTO = $postBLL->AddNewItem($postDTO);
+		$responseDTO = $postBLL->GetAllPostsByPostType($requestObj->enumPostType);
 	} 
 	catch (Throwable $e) 
 	{

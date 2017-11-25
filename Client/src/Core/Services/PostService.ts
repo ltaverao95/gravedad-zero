@@ -10,6 +10,7 @@ import { AESEncryption } from '../../Blocks/Crypt/Services/AESEncryption';
 import { ResourceMessages } from '../../Blocks/Messages/Services/ResourceMessages';
 import { ICrudOperations } from '../../common/index';
 import { PostDTO } from '../../DTO/Post/PostDTO';
+import { CoreConstants } from '../index';
 
 @Injectable()
 export class PostService implements ICrudOperations<PostDTO>
@@ -19,6 +20,18 @@ export class PostService implements ICrudOperations<PostDTO>
     constructor(private _http: Http,
         private _aesEncryption: AESEncryption) {
         this._resourceMessages = new ResourceMessages();
+    }
+
+    public GetAllPostsByPostType(enumPostType: CoreConstants.EnumPostType): Observable<Response> {
+        let requestOptions: Request = new Request({
+            url: UtilsConstants.POST_URLS.GET_ALL_POSTS_BY_POST_TYPE,
+            method: RequestMethod.Post,
+            body: JSON.stringify({
+                enumPostType: enumPostType
+            })
+        });
+
+        return this.DoRequest(requestOptions);
     }
 
     public GetAllItems(): Observable<Response> {
@@ -40,11 +53,11 @@ export class PostService implements ICrudOperations<PostDTO>
         return this.DoRequest(requestOptions);
     }
 
-    public AddNewItem(itemDTO: PostDTO): Observable<Response> {
+    public AddNewItem(itemDTO: any): Observable<Response> {
         let requestOptions: Request = new Request({
-            url: UtilsConstants.LOGIN_URLS.SIGN_IN_URL,
+            url: UtilsConstants.POST_URLS.ADD_NEW_POST,
             method: RequestMethod.Post,
-            body: ''
+            body: itemDTO
         });
 
         return this.DoRequest(requestOptions);

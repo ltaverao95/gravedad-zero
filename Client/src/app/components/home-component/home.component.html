@@ -39,16 +39,17 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading news_feed_title">Noticias</div>
 				<div class="panel-body news_feeds">
-					
+
 					<div style="text-align: center">
-						<span *ngIf="postsList == null || postsList.length == 0 || postsList == []" 
-						  	  style="font-size: 18px">{{postMessages}}</span>
+						<span *ngIf="postsList == null || 
+									 postsList.length == 0" style="font-size: 18px">{{postMessages}}</span>
 					</div>
 
 					<div class="media" *ngFor="let post of postsList; let i = index" [ngClass]="postsList.length % i == 0 ? 'news_feeds_content' : ''">
 						<div class="media-left media-middle">
 							<a href="#">
-								<img class="media-object img-circle" [src]="post.PostDetailDTO.PhotoUrl == null ? 'assets/images/gzlogo.jpg' : post.PostDetailDTO.PhotoUrl" alt="user_picture">
+								<img class="media-object img-circle" [src]="post.UserDTO.UserDetail.ProfilePhoto == null ? 'assets/images/gzlogo.jpg' : utilsConstants.SERVER_PATH + post.UserDTO.UserDetail.ProfilePhoto"
+								 alt="user_picture">
 							</a>
 						</div>
 						<div class="media-body">
@@ -58,7 +59,7 @@
 								</a>
 							</h4>
 							<p>
-								{{post.PostDetailDTO.Message}}
+								{{post.PostDetailDTO.Message | limitTo : 200}}
 							</p>
 						</div>
 
@@ -79,13 +80,13 @@
 				</div>
 				<div class="panel-footer" style="text-align: center;" *ngIf="loginService.isLoginValid()">
 					<div class="btn-group btn-group-sm" role="group" aria-label="actions">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_post_modal" *ngIf="currentUser != null && currentUser.Role != enumUserPermissions.READ">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_post_modal" *ngIf="currentUser != null && currentUser.Role != coreConstants.EnumUserPermission.READ">
 							<i class="glyphicon glyphicon-plus"></i>
 						</button>
-						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit_post_modal" *ngIf="currentUser != null && currentUser.Role != enumUserPermissions.READ">
+						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit_post_modal" *ngIf="currentUser != null && currentUser.Role != coreConstants.EnumUserPermission.READ">
 							<i class="glyphicon glyphicon-pencil"></i>
 						</button>
-						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_post_modal" *ngIf="currentUser != null && currentUser.Role != enumUserPermissions.READ">
+						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_post_modal" *ngIf="currentUser != null && currentUser.Role != coreConstants.EnumUserPermission.READ">
 							<i class="glyphicon glyphicon-trash"></i>
 						</button>
 					</div>

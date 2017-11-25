@@ -45,7 +45,7 @@
             {
                 if($itemDTO == null)
                 {
-                    $responseDTO->UIMessage = "No se encontraron resultados";
+                    $responseDTO->UIMessage = "No hay items para mostrar";
                     return $responseDTO;
                 }
 
@@ -64,6 +64,11 @@
                     $postDTO->PostDetailDTO->PhotoUrl = $row['photo_url'];
                     $postDTO->PostDetailDTO->DatePublished = $row['date_published'];
                     $postDTO->PostDetailDTO->IdPost = $row['id_post'];
+
+                    $postDTO->UserDTO = new UserDTO();
+                    $postDTO->UserDTO->UserDetail = new UserDetailDTO();
+                    $postDTO->UserDTO->UserDetail->ProfilePhoto = $row['profile_photo'];
+                    $postDTO->UserDTO->UserDetail->Name = $row['name'];
 
                     array_push($itemsList, $postDTO);
                 }

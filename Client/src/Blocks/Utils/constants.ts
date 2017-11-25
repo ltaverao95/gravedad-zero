@@ -5,6 +5,7 @@ export namespace UtilsConstants {
         Error = 0
     }
 
+    export const SERVER_PATH: string = "http://localhost:81/gravedad-zero/";
     export const SERVER_ABSOLUTE_PATH: string = "http://localhost:81/gravedad-zero/Server/api/";
 
     export const LOGIN_URLS = {
@@ -12,6 +13,9 @@ export namespace UtilsConstants {
     };
 
     export const POST_URLS = {
-        GET_ALL_POSTS: UtilsConstants.SERVER_ABSOLUTE_PATH + "Post/GetAllPosts.php"
+        GET_ALL_POSTS: UtilsConstants.SERVER_ABSOLUTE_PATH + "Post/GetAllPosts.php",
+        GET_ALL_POSTS_BY_POST_TYPE: UtilsConstants.SERVER_ABSOLUTE_PATH + "Post/GetAllPostsByPostType.php",
+
+        ADD_NEW_POST: UtilsConstants.SERVER_ABSOLUTE_PATH + "Post/AddNewPost.php"
     };
 }

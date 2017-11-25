@@ -7,7 +7,8 @@
         public $Password = null;
         public $Role = null;
 
-        public $UserDetail;
+        public $UserDetail = null;
+        public $PostDTOList = null; 
     }
 
 ?>

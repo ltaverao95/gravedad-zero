@@ -11,6 +11,7 @@ import { ActionResultDTO } from '../../../Blocks/Utils/Services/ActionResultDTO'
 import { UserDTO } from '../../../DTO/User/UserDTO';
 import { PostDTO } from '../../../DTO/Post/PostDTO';
 import { UtilsFactory } from '../../../Blocks/Utils/Services/UtilsFactory';
+import { UtilsConstants } from '../../../Blocks/Utils/index';
 
 @Component({
   selector: 'home',
@@ -23,30 +24,34 @@ import { UtilsFactory } from '../../../Blocks/Utils/Services/UtilsFactory';
   ]
 })
 export class HomeComponent implements OnInit {
-  public enumUserPermissions = CoreConstants.EnumUserPermission;
+
   public static updateUserStatus: Subject<boolean> = new Subject();
+
+  public coreConstants = CoreConstants;
+  public utilsConstants = UtilsConstants
   public postMessages: string = null;
+  public postsList: Array<PostDTO>;
 
   private _utilsFactory: UtilsFactory;
 
-  public postsList: Array<PostDTO>;
-
   constructor(public loginService: LoginService,
-    public postService: PostService,
-    public currentUser: UserDTO) {
+              public postService: PostService,
+              public currentUser: UserDTO) {
     this.currentUser = this.loginService.getLoggedUser();
     this._utilsFactory = new UtilsFactory();
-    HomeComponent.updateUserStatus.subscribe(res => {
-      this.currentUser = this.loginService.getLoggedUser();
-    });
+    HomeComponent.updateUserStatus.subscribe(
+      res => {
+        this.currentUser = this.loginService.getLoggedUser();
+      }
+    );
   }
 
   ngOnInit() {
-    this.getAllPosts();
+    this.getAllPostsByPostType();
   }
 
-  private getAllPosts() {
-    this.postService.GetAllItems().subscribe(
+  private getAllPostsByPostType() {
+    this.postService.GetAllPostsByPostType(CoreConstants.EnumPostType.NEW).subscribe(
       response => {
 
         let actionResultDTO: ActionResultDTO = response.json();
@@ -57,8 +62,8 @@ export class HomeComponent implements OnInit {
         }
 
         if ((actionResultDTO.ResultData == null ||
-          actionResultDTO.ResultData === "") &&
-          this._utilsFactory.IsValidString(actionResultDTO.UIMessage)) {
+            actionResultDTO.ResultData === "") &&
+            this._utilsFactory.IsValidString(actionResultDTO.UIMessage)) {
           this.postMessages = actionResultDTO.UIMessage;
           return;
         }
