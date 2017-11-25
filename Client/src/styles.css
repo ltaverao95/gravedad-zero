@@ -166,3 +166,8 @@ section{
 		width: 100%;
 	}
 }
+
+.media {
+	margin-top: 6px !important;
+	padding: 5px 0 5px 0 !important;
+}

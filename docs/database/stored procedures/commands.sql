@@ -14,10 +14,12 @@ select * from get_user_by_id_without_detail(1);
 select * from get_user_by_id_with_detail(1);
 select * from get_users_without_detail();
 select * from get_users_with_detail();
+SELECT setval('public.user_id_user_seq', 0, true);
 
 select * from get_posts_with_detail_profile_photo_and_name();
 select * from get_posts_with_detail_profile_photo_and_name_by_post_type(1);
 select add_post_with_detail('Title', 1, 1, 'Message', 'http://google.com', '2017-11-24');
+
 
 /*Function to Get Items*/
 

@@ -17,8 +17,13 @@
         $postDTO->UserDTO->Id = $_POST["id_user"];
 
         $postDTO->PostDetailDTO = new PostDetailDTO();
-        $postDTO->PostDetailDTO->Message = $_POST["message"];
-        $postDTO->PostDetailDTO->PhotoUrl = $_FILES['photo'];
+		$postDTO->PostDetailDTO->Message = $_POST["message"];
+		$postDTO->PostDetailDTO->DatePublished = $_POST["date_published"];
+		
+		if(!empty($_FILES['photo']))
+		{
+			$postDTO->PostDetailDTO->PhotoUrl = $_FILES['photo'];
+		}
 
 		$postBLL = new PostBLL();
 		$responseDTO = $postBLL->AddNewItem($postDTO);

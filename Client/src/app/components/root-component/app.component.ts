@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import * as jQuery from 'jquery';
 
 import { LoginService } from '../../../Core/Services/LoginService';
 import { AESEncryption } from '../../../Blocks/Crypt/Services/AESEncryption';
@@ -8,6 +9,7 @@ import { UserDTO } from '../../../DTO/User/UserDTO';
 import { CoreConstants } from '../../../Core/constants';
 import { PostService } from '../../../Core/Services/PostService';
 import { ActionResultDTO } from '../../../Blocks/Utils/Services/ActionResultDTO';
+import { UtilsFactory } from '../../../Blocks/Utils/Services/UtilsFactory';
 
 @Component({
   selector: 'app-root',
@@ -29,21 +31,21 @@ export class AppComponent {
 
   private file: File = null;
   private formData: FormData = new FormData();
+  private _utilsFactory: UtilsFactory;
 
   constructor(public loginService: LoginService,
     public postService: PostService,
     public currentUser: UserDTO) {
+
+      this._utilsFactory = new UtilsFactory();
+
     this.newPostFormGroup = new FormGroup({
       title: new FormControl('', [Validators.required]),
       post_type: new FormControl('', [Validators.required]),
       message: new FormControl('', [Validators.required])
     });
 
-    this.newPostFormGroup.setValue({
-      title: null,
-      post_type: CoreConstants.EnumPostType.NEW,
-      message: null
-    });
+    this.clearForm();
 
     this.currentUser = this.loginService.getLoggedUser();
 
@@ -55,7 +57,7 @@ export class AppComponent {
   }
 
   public newPost() {
-
+    
     if (this.file != null) {
       this.formData.append('photo', this.file, this.file.name);
     }
@@ -65,10 +67,11 @@ export class AppComponent {
     }
 
     this.formData.append('id_user', this.currentUser.Id.toString());
+    this.formData.append('date_published', this._utilsFactory.GetCurrentDate());
 
     this.postService.AddNewItem(this.formData).subscribe(
       response => {
-
+        this.clearForm();
         let actionResultDTO: ActionResultDTO = response.json();
         console.log(actionResultDTO);
         if (actionResultDTO.HasErrors) {
@@ -76,10 +79,11 @@ export class AppComponent {
           return;
         }
 
-        //$("#new_post_modal").modal('hide');
+        jQuery("#new_post_modal .close").click();
       },
       error => {
         console.log(error);
+        this.clearForm();
       }
     );
   }
@@ -89,5 +93,16 @@ export class AppComponent {
     let target: HTMLInputElement = <HTMLInputElement>eventObj.target;
     let files: FileList = target.files;
     this.file = files[0];
+  }
+
+  private clearForm()
+  {
+    this.newPostFormGroup.setValue({
+      title: null,
+      post_type: CoreConstants.EnumPostType.NEW,
+      message: null
+    });
+
+    jQuery("#post_photo").val("");
   }
 }

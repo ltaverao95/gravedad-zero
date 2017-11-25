@@ -45,7 +45,7 @@
 									 postsList.length == 0" style="font-size: 18px">{{postMessages}}</span>
 					</div>
 
-					<div class="media" *ngFor="let post of postsList; let i = index" [ngClass]="postsList.length % i == 0 ? 'news_feeds_content' : ''">
+					<div class="media" *ngFor="let post of postsList; let i = index" [ngClass]="i % 2 != 0 ? 'news_feeds_content' : ''">
 						<div class="media-left media-middle">
 							<a href="#">
 								<img class="media-object img-circle" [src]="post.UserDTO.UserDetail.ProfilePhoto == null ? 'assets/images/gzlogo.jpg' : utilsConstants.SERVER_PATH + post.UserDTO.UserDetail.ProfilePhoto"
@@ -57,6 +57,9 @@
 								<a href="">
 									{{post.Title}}
 								</a>
+								<p style="font-size: 11px;">
+									<span *ngIf="post.UserDTO.UserDetail.Name != null">{{post.UserDTO.UserDetail.Name}} - </span>{{post.PostDetailDTO.DatePublished}}
+								</p>
 							</h4>
 							<p>
 								{{post.PostDetailDTO.Message | limitTo : 200}}

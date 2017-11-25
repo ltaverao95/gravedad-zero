@@ -151,7 +151,7 @@
                     ':post_type' => $itemDTO->PostType,
                     ':message' => $itemDTO->PostDetailDTO->Message,
                     ':photo_url' => $itemDTO->PostDetailDTO->PhotoUrl,
-                    ':date_published' => date('Y-m-d'),
+                    ':date_published' => $itemDTO->PostDetailDTO->DatePublished
                 );
                 $responseDTO = $dataBaseServicesDAL->ExecuteQuery($query);
                 if($responseDTO->HasErrors)

@@ -49,10 +49,13 @@
             
             try 
             {
-                $responseDTO = $this->ValidateImageContent($itemDTO);
-                if($responseDTO->HasErrors)
+                if(!empty($itemDTO->PostDetailDTO->PhotoUrl))
                 {
-                    return $responseDTO;
+                    $responseDTO = $this->ValidateImageContent($itemDTO);
+                    if($responseDTO->HasErrors)
+                    {
+                        return $responseDTO;
+                    }
                 }
 
                 $postDAL = new PostDAL();
@@ -98,6 +101,7 @@
                     $responseDTO->SetMessageError("No hay una imagen para cargar");
                     return $responseDTO;
                 }
+                
                 $guid = bin2hex(openssl_random_pseudo_bytes(10));
                 $imageContent = file_get_contents($itemDTO->PostDetailDTO->PhotoUrl['tmp_name']);
                 $fileName = $guid . "__" . $itemDTO->PostDetailDTO->PhotoUrl['name'];
@@ -107,7 +111,7 @@
                 fclose($fp);
                 $itemDTO->PostDetailDTO->PhotoUrl = $fileUrl;
             }
-            catch (Exception $e)
+            catch (Throwable $e)
             {
                 $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to get content from image", $e->getMessage());
             }
