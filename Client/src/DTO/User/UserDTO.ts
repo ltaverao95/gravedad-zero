@@ -21,6 +21,9 @@ export class UserDTO
     {
         this._utilsFactory = new UtilsFactory();
         this._resourceMessages = new ResourceMessages();
+
+        this.UserDetail = new UserDetailDTO();
+        this.PostDTOList = new Array<PostDTO>();
     }
 
     public ValidateUserDTO() : ActionResultDTO

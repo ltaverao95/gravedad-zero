@@ -21,6 +21,10 @@ export class PostDTO {
     constructor() {
         this._utilsFactory = new UtilsFactory();
         this._resourceMessages = new ResourceMessages();
+        
+        this.UserDTO = new UserDTO();
+        this.PostDetailDTO = new PostDetailDTO();
+        this.PostCommentsDTOList = new Array<PostCommentDTO>();
     }
 
     public ValidatePostDTO(): ActionResultDTO {

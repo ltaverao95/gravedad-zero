@@ -19,7 +19,6 @@ import { UtilsConstants } from '../../../Blocks/Utils/index';
   styleUrls: ['./home.component.css'],
   providers: [
     LoginService,
-    PostService,
     AESEncryption
   ]
 })
@@ -30,7 +29,6 @@ export class HomeComponent implements OnInit {
   public coreConstants = CoreConstants;
   public utilsConstants = UtilsConstants
   public postMessages: string = null;
-  public postsList: Array<PostDTO>;
 
   private _utilsFactory: UtilsFactory;
 
@@ -68,7 +66,7 @@ export class HomeComponent implements OnInit {
           return;
         }
 
-        this.postsList = actionResultDTO.ResultData;
+        this.postService.postsList = actionResultDTO.ResultData;
       },
       error => {
         console.log(error);

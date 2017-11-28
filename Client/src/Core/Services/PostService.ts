@@ -15,6 +15,7 @@ import { CoreConstants } from '../index';
 @Injectable()
 export class PostService implements ICrudOperations<PostDTO>
 {
+    postsList: Array<PostDTO>;
     private _resourceMessages: ResourceMessages;
 
     constructor(private _http: Http,

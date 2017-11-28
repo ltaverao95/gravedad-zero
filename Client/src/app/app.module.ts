@@ -16,6 +16,7 @@ import { ContactComponent } from './components/contact-component/contact.compone
 import { ReviewComponent } from './components/review-component/review.component';
 import { TimelineComponent } from './components/timeline-component/timeline.component';
 import { PostsComponent } from './components/posts-component/posts.component';
+import { PostDetailComponent } from './components/post-detail-component/post.detail.component';
 import { SigninComponent } from './components/signin-component/signin.component';
 import { SignOutComponent } from './components/signout-component/signout.component';
 import { AdminRootComponent } from './components/admin-root-component/admin.root.component';
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
   { path: '', redirectTo: "/home", pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'blog', 
+  { 
+    path: 'blog', 
     children:
     [
       {
@@ -63,7 +65,20 @@ const appRoutes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'timeline', component: TimelineComponent },
-  { path: 'posts', component: PostsComponent },
+  { 
+    path: 'posts', 
+    children:
+    [
+      {
+        path: '',
+        component: PostsComponent,
+      },
+      {
+        path: 'detail/:id',
+        component: PostDetailComponent
+      }
+    ]
+  },
   { path: 'signin', component: SigninComponent },
   { 
     path: 'signout', 
@@ -112,6 +127,7 @@ const appRoutes: Routes = [
     ReviewComponent,
     TimelineComponent,
     PostsComponent,
+    PostDetailComponent,
     SigninComponent,
     SignOutComponent,
     PageNotFoundComponent,
