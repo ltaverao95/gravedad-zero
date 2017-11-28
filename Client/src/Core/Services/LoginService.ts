@@ -24,8 +24,8 @@ export class LoginService implements ILogin {
     }
 
     isLoginValid() {
-        if (localStorage.getItem('user_session') &&
-            localStorage.getItem('user_session') != "null") {
+        if (sessionStorage.getItem('user_session') &&
+            sessionStorage.getItem('user_session') != "null") {
             return true;
         }
 
@@ -40,7 +40,7 @@ export class LoginService implements ILogin {
             return;
         }
 
-        let actionResultDTO: ActionResultDTO = this._aesEncryption.DecryptText(localStorage.getItem('user_session'));
+        let actionResultDTO: ActionResultDTO = this._aesEncryption.DecryptText(sessionStorage.getItem('user_session'));
         if (actionResultDTO.HasErrors) {
             return;
         }

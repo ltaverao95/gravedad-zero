@@ -57,7 +57,7 @@ export class SigninComponent {
                 }
 
                 this.showErrorMessage = false;
-                localStorage.setItem('user_session', actionResultDTO.ResultData);
+                sessionStorage.setItem('user_session', actionResultDTO.ResultData);
                 this._router.navigateByUrl('/home');
             },
             err => {

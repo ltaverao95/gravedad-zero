@@ -14,7 +14,7 @@ export class SignOutComponent {
   private _loginService: LoginService) {
     Observable.timer(1100)
       .subscribe(x => {
-        localStorage.removeItem('user_session');
+        sessionStorage.removeItem('user_session');
         this._loginService.currentUser = null;
         this._router.navigateByUrl("/home");
       });
