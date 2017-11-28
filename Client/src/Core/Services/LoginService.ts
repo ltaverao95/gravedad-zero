@@ -15,6 +15,7 @@ import { ResourceMessages } from '../../Blocks/Messages/Services/ResourceMessage
 @Injectable()
 export class LoginService implements ILogin {
 
+    currentUser: UserDTO;
     private _resourceMessages: ResourceMessages;
 
     constructor(private _http: Http,
@@ -31,25 +32,27 @@ export class LoginService implements ILogin {
         return false;
     }
 
-    getLoggedUser(): UserDTO {
+    getLoggedUser(): void {
+
+        this.currentUser = null;
+
         if (!this.isLoginValid()) {
-            return null
+            return;
         }
 
         let actionResultDTO: ActionResultDTO = this._aesEncryption.DecryptText(localStorage.getItem('user_session'));
         if (actionResultDTO.HasErrors) {
-            return null;
+            return;
         }
 
         if (actionResultDTO.ResultData == null ||
             actionResultDTO.ResultData === "") {
-            return null;
+            return;
         }
 
         let userDTO: UserDTO = JSON.parse(actionResultDTO.ResultData);
         userDTO.Password = this._aesEncryption.EncryptText(userDTO.Password).ResultData;
-
-        return userDTO;
+        this.currentUser = userDTO;
     }
 
     SignIn(userDTO: UserDTO): Observable<Response> {

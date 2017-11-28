@@ -18,15 +18,12 @@ import { UtilsFactory } from '../../../Blocks/Utils/Services/UtilsFactory';
   providers: [
     LoginService,
     PostService,
-    AESEncryption,
-    UserDTO
+    AESEncryption
   ]
 })
 export class AppComponent {
 
   public newPostFormGroup: FormGroup;
-
-  public static updateUserStatus: Subject<boolean> = new Subject();
   public coreConstants = CoreConstants;
 
   private file: File = null;
@@ -34,10 +31,9 @@ export class AppComponent {
   private _utilsFactory: UtilsFactory;
 
   constructor(public loginService: LoginService,
-    public postService: PostService,
-    public currentUser: UserDTO) {
+    public postService: PostService) {
 
-      this._utilsFactory = new UtilsFactory();
+    this._utilsFactory = new UtilsFactory();
 
     this.newPostFormGroup = new FormGroup({
       title: new FormControl('', [Validators.required]),
@@ -46,18 +42,10 @@ export class AppComponent {
     });
 
     this.clearForm();
-
-    this.currentUser = this.loginService.getLoggedUser();
-
-    AppComponent.updateUserStatus.subscribe(
-      res => {
-        this.currentUser = this.loginService.getLoggedUser();
-      }
-    );
   }
 
   public newPost() {
-    
+
     if (this.file != null) {
       this.formData.append('photo', this.file, this.file.name);
     }
@@ -66,7 +54,7 @@ export class AppComponent {
       this.formData.append(item, this.newPostFormGroup.value[item]);
     }
 
-    this.formData.append('id_user', this.currentUser.Id.toString());
+    this.formData.append('id_user', this.loginService.currentUser.Id.toString());
     this.formData.append('date_published', this._utilsFactory.GetCurrentDate());
 
     this.postService.AddNewItem(this.formData).subscribe(
@@ -95,8 +83,7 @@ export class AppComponent {
     this.file = files[0];
   }
 
-  private clearForm()
-  {
+  private clearForm() {
     this.newPostFormGroup.setValue({
       title: null,
       post_type: CoreConstants.EnumPostType.NEW,

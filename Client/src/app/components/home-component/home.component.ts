@@ -16,15 +16,9 @@ import { UtilsConstants } from '../../../Blocks/Utils/index';
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  providers: [
-    LoginService,
-    AESEncryption
-  ]
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  public static updateUserStatus: Subject<boolean> = new Subject();
 
   public coreConstants = CoreConstants;
   public utilsConstants = UtilsConstants
@@ -33,15 +27,9 @@ export class HomeComponent implements OnInit {
   private _utilsFactory: UtilsFactory;
 
   constructor(public loginService: LoginService,
-              public postService: PostService,
-              public currentUser: UserDTO) {
-    this.currentUser = this.loginService.getLoggedUser();
+              public postService: PostService) {
     this._utilsFactory = new UtilsFactory();
-    HomeComponent.updateUserStatus.subscribe(
-      res => {
-        this.currentUser = this.loginService.getLoggedUser();
-      }
-    );
+    this.loginService.getLoggedUser();
   }
 
   ngOnInit() {

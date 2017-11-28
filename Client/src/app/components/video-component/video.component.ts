@@ -9,22 +9,10 @@ import { CoreConstants } from '../../../Core/constants';
 @Component({
   selector: 'video-panel',
   templateUrl: './video.component.html',
-  styleUrls: ['./video.component.css'],
-  providers: [
-    LoginService,
-    AESEncryption,
-    UserDTO
-  ]
+  styleUrls: ['./video.component.css']
 })
 export class VideoComponent {
   public enumUserPermissions = CoreConstants.EnumUserPermission;
-  public static updateUserStatus: Subject<boolean> = new Subject();
 
-  constructor(public loginService: LoginService,
-    public currentUser: UserDTO) {
-    this.currentUser = this.loginService.getLoggedUser();
-    VideoComponent.updateUserStatus.subscribe(res => {
-      this.currentUser = this.loginService.getLoggedUser();
-    });
-  }
+  constructor(public loginService: LoginService) {}
 }

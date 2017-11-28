@@ -22,15 +22,13 @@
                         <div class="media" *ngFor="let post of postService.postsList; let i = index" [ngClass]="i % 2 != 0 ? 'news_feeds_content' : ''">
 
                             <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
-                                </a>
+                                <img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">
-                                    <a href="" routerLink="/posts/detail/{{post.Id}}">
+                                    <h4>
                                         {{post.Title}}
-                                    </a>
+                                    </h4>
                                     <p style="font-size: 11px;">
                                         <span *ngIf="post.UserDTO.UserDetail.Name != null">{{post.UserDTO.UserDetail.Name}} - </span>{{post.PostDetailDTO.DatePublished}}
                                     </p>
@@ -41,9 +39,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
-                                        </a>
+                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
                                     </div>
 
                                     <div class="media-body">
@@ -58,9 +54,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
-                                        </a>
+                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
                                     </div>
 
                                     <div class="media-body">
@@ -75,9 +69,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
-                                        </a>
+                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
                                     </div>
 
                                     <div class="media-body">
@@ -121,15 +113,13 @@
                         <div class="media" *ngFor="let post of postService.postsList; let i = index" [ngClass]="i % 2 != 0 ? 'news_feeds_content' : ''">
 
                             <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
-                                </a>
+                                <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">
-                                    <a href="" routerLink="/posts/detail/{{post.Id}}">
+                                    <h4>
                                         {{post.Title}}
-                                    </a>
+                                    </h4>
                                     <p style="font-size: 11px;">
                                         <span *ngIf="post.UserDTO.UserDetail.Name != null">{{post.UserDTO.UserDetail.Name}} - </span>{{post.PostDetailDTO.DatePublished}}
                                     </p>
@@ -140,9 +130,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
-                                        </a>
+                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
                                     </div>
 
                                     <div class="media-body">
@@ -157,9 +145,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
-                                        </a>
+                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
                                     </div>
 
                                     <div class="media-body">
@@ -174,9 +160,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
-                                        </a>
+                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
                                     </div>
 
                                     <div class="media-body">

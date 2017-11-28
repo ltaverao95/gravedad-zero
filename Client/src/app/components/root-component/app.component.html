@@ -51,9 +51,9 @@
 					<div class="dropdown-menu">
 						<div class="user_profile_options">
 							<img src="assets/images/gzlogo.jpg" class="img-circle" alt="GZLogo" width="60px" height="60px">
-							<div *ngIf="currentUser != null">
+							<div *ngIf="loginService.currentUser != null">
 								<br>
-								<span>{{currentUser.UserName}}</span>
+								<span>{{loginService.currentUser.UserName}}</span>
 							</div>
 
 							<hr>
@@ -69,11 +69,11 @@
 								</li>
 							</ul>
 
-							<hr *ngIf="currentUser != null && currentUser.Role != coreConstants.EnumUserPermission.READ">
-							<strong *ngIf="currentUser != null && currentUser.Role != coreConstants.EnumUserPermission.READ">
+							<hr *ngIf="loginService.currentUser != null && loginService.currentUser.Role != coreConstants.EnumUserPermission.READ">
+							<strong *ngIf="loginService.currentUser != null && loginService.currentUser.Role != coreConstants.EnumUserPermission.READ">
 								Actividad Rápida
 							</strong>
-							<ul class="user_quick_actions" *ngIf="currentUser != null && currentUser.Role != coreConstants.EnumUserPermission.READ">
+							<ul class="user_quick_actions" *ngIf="loginService.currentUser != null && loginService.currentUser.Role != coreConstants.EnumUserPermission.READ">
 								<li>
 									<a href="" data-toggle="modal" data-target="#new_post_modal">Publicación</a>
 								</li>
