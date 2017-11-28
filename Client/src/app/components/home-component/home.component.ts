@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   private _utilsFactory: UtilsFactory;
 
   constructor(public loginService: LoginService,
-              public postService: PostService) {
+    public postService: PostService) {
     this._utilsFactory = new UtilsFactory();
     this.loginService.getLoggedUser();
   }
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     this.getAllPostsByPostType();
   }
 
-  private getAllPostsByPostType() {
+  public getAllPostsByPostType() {
     this.postService.GetAllPostsByPostType(CoreConstants.EnumPostType.NEW).subscribe(
       response => {
 
@@ -48,8 +48,8 @@ export class HomeComponent implements OnInit {
         }
 
         if ((actionResultDTO.ResultData == null ||
-            actionResultDTO.ResultData === "") &&
-            this._utilsFactory.IsValidString(actionResultDTO.UIMessage)) {
+          actionResultDTO.ResultData === "") &&
+          this._utilsFactory.IsValidString(actionResultDTO.UIMessage)) {
           this.postMessages = actionResultDTO.UIMessage;
           return;
         }

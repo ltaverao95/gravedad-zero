@@ -18,4 +18,8 @@ export namespace UtilsConstants {
 
         ADD_NEW_POST: UtilsConstants.SERVER_ABSOLUTE_PATH + "Post/AddNewPost.php"
     };
+
+    export const IMAGES_URLS = {
+        GZ_USER_PROFILE: 'assets/images/gzlogo.jpg'
+    };
 }

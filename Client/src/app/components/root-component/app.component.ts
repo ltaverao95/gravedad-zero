@@ -42,6 +42,7 @@ export class AppComponent {
     });
 
     this.clearForm();
+    this.loginService.getLoggedUser();
   }
 
   public newPost() {
@@ -61,7 +62,7 @@ export class AppComponent {
       response => {
         this.clearForm();
         let actionResultDTO: ActionResultDTO = response.json();
-        console.log(actionResultDTO);
+
         if (actionResultDTO.HasErrors) {
           console.log(actionResultDTO.StackTrace);
           return;
@@ -70,8 +71,8 @@ export class AppComponent {
         jQuery("#new_post_modal .close").click();
       },
       error => {
-        console.log(error);
         this.clearForm();
+        console.log(error);
       }
     );
   }

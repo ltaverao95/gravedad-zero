@@ -22,7 +22,7 @@
                         <div class="media" *ngFor="let post of postService.postsList; let i = index" [ngClass]="i % 2 != 0 ? 'news_feeds_content' : ''">
 
                             <div class="media-left">
-                                <img class="media-object img-circle" src="assets/images/gzlogo.jpg" alt="user_picture">
+                                    <img class="media-object img-circle" [src]="post.UserDTO.UserDetail.ProfilePhoto == null ? utilsConstants.IMAGES_URLS.GZ_USER_PROFILE : utilsConstants.SERVER_PATH + post.UserDTO.UserDetail.ProfilePhoto" />
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">
@@ -39,7 +39,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
+                                            <img class="media-object img-circle" [src]="post.UserDTO.UserDetail.ProfilePhoto == null ? utilsConstants.IMAGES_URLS.GZ_USER_PROFILE : utilsConstants.SERVER_PATH + post.UserDTO.UserDetail.ProfilePhoto" />
                                     </div>
 
                                     <div class="media-body">
@@ -54,7 +54,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
+                                            <img class="media-object img-circle" [src]="post.UserDTO.UserDetail.ProfilePhoto == null ? utilsConstants.IMAGES_URLS.GZ_USER_PROFILE : utilsConstants.SERVER_PATH + post.UserDTO.UserDetail.ProfilePhoto" />
                                     </div>
 
                                     <div class="media-body">
@@ -69,7 +69,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
+                                            <img class="media-object img-circle" [src]="post.UserDTO.UserDetail.ProfilePhoto == null ? utilsConstants.IMAGES_URLS.GZ_USER_PROFILE : utilsConstants.SERVER_PATH + post.UserDTO.UserDetail.ProfilePhoto" />
                                     </div>
 
                                     <div class="media-body">
@@ -113,7 +113,7 @@
                         <div class="media" *ngFor="let post of postService.postsList; let i = index" [ngClass]="i % 2 != 0 ? 'news_feeds_content' : ''">
 
                             <div class="media-left">
-                                <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
+                                    <img class="media-object img-circle" [src]="post.UserDTO.UserDetail.ProfilePhoto == null ? utilsConstants.IMAGES_URLS.GZ_USER_PROFILE : utilsConstants.SERVER_PATH + post.UserDTO.UserDetail.ProfilePhoto" />
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">
@@ -130,7 +130,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
+                                            <img class="media-object img-circle" [src]="post.UserDTO.UserDetail.ProfilePhoto == null ? utilsConstants.IMAGES_URLS.GZ_USER_PROFILE : utilsConstants.SERVER_PATH + post.UserDTO.UserDetail.ProfilePhoto" />
                                     </div>
 
                                     <div class="media-body">
@@ -145,7 +145,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
+                                            <img class="media-object img-circle" [src]="post.UserDTO.UserDetail.ProfilePhoto == null ? utilsConstants.IMAGES_URLS.GZ_USER_PROFILE : utilsConstants.SERVER_PATH + post.UserDTO.UserDetail.ProfilePhoto" />
                                     </div>
 
                                     <div class="media-body">
@@ -160,7 +160,7 @@
 
                                 <div class="media">
                                     <div class="media-left">
-                                        <img class="media-object img-circle img-user-comment" src="assets/images/gzlogo.jpg" alt="user_picture">
+                                            <img class="media-object img-circle" [src]="post.UserDTO.UserDetail.ProfilePhoto == null ? utilsConstants.IMAGES_URLS.GZ_USER_PROFILE : utilsConstants.SERVER_PATH + post.UserDTO.UserDetail.ProfilePhoto" />
                                     </div>
 
                                     <div class="media-body">

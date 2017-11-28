@@ -1,0 +1,12 @@
+.caption{
+    text-align: center;
+}
+
+.thumbnail img{
+    width: 250px;
+    height: 250px;
+}
+
+.row:first-child{
+    margin: 5px !important;
+}
