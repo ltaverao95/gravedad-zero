@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './components/root-component/app.component';
 import { HomeComponent } from './components/home-component/home.component';
@@ -29,6 +30,7 @@ import { PageNotFoundComponent } from './components/page-not-found-component/pag
 import { EnsureAuthenticated } from '../Core/Services/EnsureAuthenticated';
 
 import { TruncatePipe } from '../common/TruncatePipe';
+import { FilterPipe } from '../common/FilterPipe';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: "/home", pathMatch: 'full' },
@@ -137,13 +139,15 @@ const appRoutes: Routes = [
     AdminMessageComponent,
     ConfigurationComponent,
 
-    TruncatePipe
+    TruncatePipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    NgxPaginationModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [EnsureAuthenticated],

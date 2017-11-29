@@ -5,18 +5,57 @@
                              postService.postsListByPostType.length == 0" style="font-size: 18px">{{postMessages}}</span>
     </div>
 
-    <div class="col-sm-5 col-md-3" *ngFor="let post of postService.postsList">
-        <div class="thumbnail">
-            <img [src]="post.PostDetailDTO.PhotoUrl != null ? utilsConstants.SERVER_PATH + post.PostDetailDTO.PhotoUrl : utilsConstants.IMAGES_URLS.GZ_USER_PROFILE">
-            <div class="caption">
-                <h3>{{post.Title}}</h3>
-                <p>
-                    <a href="#" class="btn btn-default" role="button" routerLink="/posts/detail/{{post.Id}}">
-                        Ver
-                    </a>
-                </p>
-            </div>
+    <div class="row" *ngIf="loginService.isLoginValid()">
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-10"></div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2" style="padding: 0.5em; text-align:center" *ngIf="loginService.currentUser != null && loginService.currentUser.Role != coreConstants.EnumUserPermission.READ">
+            <button class="btn btn-sm btn-default" [disabled]="showPostToDelete" data-toggle="modal" data-target="#new_post_modal">
+                <i class="glyphicon glyphicon-plus"></i>
+            </button>
+            <button class="btn btn-sm btn-default" [disabled]="showPostToDelete" (click)="showPostToDelete = true;">
+                <i class="glyphicon glyphicon-minus"></i>
+            </button>
+            <button class="btn btn-sm btn-default" [disabled]="showPostToDelete">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+            <button class="btn btn-sm btn-default" *ngIf="showPostToDelete" (click)="showPostToDelete = false;">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+            </button>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <input type="text" class="form-control" placeholder="Buscar publicación" [(ngModel)]="searchPost">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <input type="checkbox" (click)="CheckAllPosts()"> Check
+        <div class="col-sm-5 col-md-3" *ngFor="let post of postService.postsList | filter: 'Title' : searchPost | paginate: config">
+            <div class="thumbnail">
+                <input type="checkbox" [(ngModel)]="post.Selected" (change)="selectChanged(post)" class="pull-right" *ngIf="showPostToDelete"
+                />
+                <img [src]="post.PostDetailDTO.PhotoUrl != null ? utilsConstants.SERVER_PATH + post.PostDetailDTO.PhotoUrl : utilsConstants.IMAGES_URLS.GZ_USER_PROFILE">
+                <div class="caption">
+                    <h3>
+                        <a href="" routerLink="/posts/detail/{{post.Id}}">
+                            {{post.Title}}
+                        </a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div style="text-align: center">
+        <pagination-controls (pageChange)="currentPage = $event" 
+                            [id]="config.id"
+                            previousLabel="Anterior"
+                            nextLabel="Siguiente"></pagination-controls>
+    </div>
 </div>

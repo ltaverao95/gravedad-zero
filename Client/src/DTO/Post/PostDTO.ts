@@ -10,6 +10,7 @@ export class PostDTO {
     public Id: number = null;
     public Title: string = null;
     public PostType: CoreConstants.EnumPostType = CoreConstants.EnumPostType.NEW;
+    public Selected: boolean = false;
 
     public UserDTO: UserDTO = null;
     public PostDetailDTO: PostDetailDTO = null;
