@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
 
 import { LoginService } from '../../../Core/Services/LoginService';
 import { PostService } from '../../../Core/Services/PostService';

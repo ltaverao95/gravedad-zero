@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import * as jQuery from 'jquery';
 
