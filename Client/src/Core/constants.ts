@@ -1,12 +1,12 @@
 export namespace CoreConstants{
     export enum EnumUserPermission {
-        ADMIN = "admin",
-        EDIT = "edit",
-        READ = "read"
+        ADMIN,
+        EDIT,
+        READ
     }
 
     export enum EnumPostType {
-        NEW = 0,
-        POST = 1
+        NEW,
+        POST
     }
 }
